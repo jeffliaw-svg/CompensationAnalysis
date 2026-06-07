@@ -110,6 +110,11 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
 .card .value a { color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--gray-500); }
 .card .value a:hover { border-bottom-color: var(--navy); }
 .card .detail { font-size: 12px; color: var(--slate); margin-top: 4px; }
+.card-wages { margin: 4px 0; }
+.card-wage-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+.card-role { font-size: 12px; color: var(--gray-500); min-width: 52px; }
+.card-amt { font-size: 22px; font-weight: 700; color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--gray-500); }
+.card-amt:hover { border-bottom-color: var(--navy); }
 
 .section { margin-bottom: 40px; }
 .section-title {
@@ -322,23 +327,39 @@ footer a { color: var(--blue-600); }
     </div>
     <div class="card">
       <div class="label">Walmart</div>
-      <div class="value"><a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">{%- set wm_avg = [] %}{%- for s in data.state_summary %}{%- if s.walmart_outdoor %}{{ wm_avg.append(s.walmart_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(wm_avg|sum / wm_avg|length) }}</a>/hr</div>
-      <div class="detail">Stocking, national avg</div>
+      {%- set wm_out = [] %}{%- set wm_in = [] %}{%- for s in data.state_summary %}{%- if s.walmart_outdoor %}{{ wm_out.append(s.walmart_outdoor) or '' }}{%- endif %}{%- if s.walmart_indoor %}{{ wm_in.append(s.walmart_indoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(wm_out|sum / wm_out|length) }}/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.walmart.indoor_indeed }}" target="_blank">${{ "%.2f"|format(wm_in|sum / wm_in|length) }}/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Home Depot</div>
-      <div class="value"><a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">{%- set hd_avg = [] %}{%- for s in data.state_summary %}{%- if s.homedepot_outdoor %}{{ hd_avg.append(s.homedepot_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(hd_avg|sum / hd_avg|length) }}</a>/hr</div>
-      <div class="detail">Lot Associate, national avg</div>
+      {%- set hd_out = [] %}{%- set hd_in = [] %}{%- for s in data.state_summary %}{%- if s.homedepot_outdoor %}{{ hd_out.append(s.homedepot_outdoor) or '' }}{%- endif %}{%- if s.homedepot_indoor %}{{ hd_in.append(s.homedepot_indoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(hd_out|sum / hd_out|length) }}/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.home_depot.indoor_indeed }}" target="_blank">${{ "%.2f"|format(hd_in|sum / hd_in|length) }}/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Costco</div>
-      <div class="value"><a href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">{%- set co_avg = [] %}{%- for s in data.state_summary %}{%- if s.costco_outdoor %}{{ co_avg.append(s.costco_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(co_avg|sum / co_avg|length) }}</a>/hr</div>
-      <div class="detail">Cart Attendant, national avg</div>
+      {%- set co_out = [] %}{%- set co_in = [] %}{%- for s in data.state_summary %}{%- if s.costco_outdoor %}{{ co_out.append(s.costco_outdoor) or '' }}{%- endif %}{%- if s.costco_indoor %}{{ co_in.append(s.costco_indoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(co_out|sum / co_out|length) }}/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.costco.indoor_indeed }}" target="_blank">${{ "%.2f"|format(co_in|sum / co_in|length) }}/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Starbucks</div>
-      <div class="value"><a href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">{%- set sb_avg = [] %}{%- for s in data.state_summary %}{%- if s.starbucks_outdoor %}{{ sb_avg.append(s.starbucks_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(sb_avg|sum / sb_avg|length) }}</a>/hr</div>
-      <div class="detail">Barista, national avg</div>
+      {%- set sb_out = [] %}{%- set sb_in = [] %}{%- for s in data.state_summary %}{%- if s.starbucks_outdoor %}{{ sb_out.append(s.starbucks_outdoor) or '' }}{%- endif %}{%- if s.starbucks_indoor %}{{ sb_in.append(s.starbucks_indoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(sb_out|sum / sb_out|length) }}/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.starbucks.indoor_indeed }}" target="_blank">${{ "%.2f"|format(sb_in|sum / sb_in|length) }}/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
   </div>
 
@@ -528,6 +549,35 @@ function fmtWageWithDist(val, url, title, distMi) {
     '<span class="dist-tip">Nearest: ' + distMi.toFixed(1) + ' mi</span>';
 }
 
+function blendedCell(loc, role) {
+  var val = loc['blended_wage_' + role];
+  var dist = loc.nearest_distance_mi || {};
+  var emps = loc.employers || {};
+  var keys = [
+    {name: 'WMT', short: 'walmart', full: 'walmart_' + role},
+    {name: 'HD', short: 'home_depot', full: 'home_depot_' + role},
+    {name: 'COST', short: 'costco', full: 'costco_' + role},
+    {name: 'SBUX', short: 'starbucks', full: 'starbucks_' + role}
+  ];
+  var parts = [];
+  var totalW = 0;
+  keys.forEach(function(k) {
+    if (isInRange(loc, k.short) && emps[k.full]) {
+      var w = 1.0 / dist[k.short];
+      parts.push({name: k.name, wage: emps[k.full].hourly_avg, weight: w});
+      totalW += w;
+    }
+  });
+  var tip = '';
+  if (totalW > 0) {
+    tip = parts.map(function(p) {
+      return Math.round(p.weight / totalW * 100) + '% ' + p.name + ' ($' + p.wage.toFixed(2) + ')';
+    }).join(' + ');
+  }
+  return '<td class="wage-cell"><strong>$' + val.toFixed(2) + '</strong>' +
+    (tip ? '<span class="dist-tip">' + tip + '</span>' : '') + '</td>';
+}
+
 function empCell(emp, empKey, loc, role) {
   var e = loc.employers && loc.employers[empKey + '_' + role];
   var dist = loc.nearest_distance_mi || {};
@@ -610,7 +660,7 @@ function renderTable() {
     html += empCell('Home Depot', 'home_depot', loc, role);
     html += empCell('Costco', 'costco', loc, role);
     html += empCell('Starbucks', 'starbucks', loc, role);
-    html += '<td><strong>$' + loc['blended_wage_' + role].toFixed(2) + '</strong></td>';
+    html += blendedCell(loc, role);
     html += '</tr>';
 
     var nextLoc = locs[idx + 1];
