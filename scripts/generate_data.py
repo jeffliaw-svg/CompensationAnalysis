@@ -310,6 +310,8 @@ ZIP_METRO_CLASS = {
     "82604": "suburban",
 }
 
+DISTANCE_CUTOFF_MI = 25.0
+
 # Base distances (miles) to nearest competitor by metro class
 DISTANCE_BASES = {
     "urban":    {"Walmart": 3.2, "Home Depot": 4.8, "Costco": 8.5, "Starbucks": 1.8},
@@ -675,17 +677,32 @@ def build_data_json(bls_rows, emp_rows):
             loc["employers"] = emp_by_state[st]
 
         distances = {}
+        in_range = {}
         for employer in employers_list:
-            distances[employer.lower().replace(" ", "_")] = estimate_distance(zipcode, employer)
+            d = estimate_distance(zipcode, employer)
+            key = employer.lower().replace(" ", "_")
+            distances[key] = d
+            in_range[key] = d <= DISTANCE_CUTOFF_MI
         loc["nearest_distance_mi"] = distances
+        loc["in_range"] = in_range
 
-        # Compute blended wage (avg of all employer outdoor wages at this location)
-        wages = []
+        # Inverse-distance weighted blended wage (only in-range competitors)
+        emp_key_map = {
+            "walmart": "walmart_outdoor",
+            "home_depot": "home_depot_outdoor",
+            "costco": "costco_outdoor",
+            "starbucks": "starbucks_outdoor",
+        }
+        weighted_sum = 0.0
+        weight_total = 0.0
         if st in emp_by_state:
-            for ek in emp_keys_outdoor:
-                if ek in emp_by_state[st]:
-                    wages.append(emp_by_state[st][ek]["hourly_avg"])
-        loc["blended_wage"] = round(sum(wages) / len(wages), 2) if wages else 0
+            for short_key, emp_key in emp_key_map.items():
+                if in_range.get(short_key) and emp_key in emp_by_state[st]:
+                    wage = emp_by_state[st][emp_key]["hourly_avg"]
+                    w = 1.0 / distances[short_key]
+                    weighted_sum += wage * w
+                    weight_total += w
+        loc["blended_wage"] = round(weighted_sum / weight_total, 2) if weight_total > 0 else 0
 
         locations.append(loc)
 
@@ -737,6 +754,7 @@ def build_data_json(bls_rows, emp_rows):
             "employer_data_period": "Q1 2026",
             "total_locations": len(COPART_LOCATIONS),
             "states_covered": len(set(l[2] for l in COPART_LOCATIONS)),
+            "distance_cutoff_mi": DISTANCE_CUTOFF_MI,
         },
         "national_benchmarks": {
             "outdoor": {

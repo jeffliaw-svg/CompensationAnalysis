@@ -150,6 +150,7 @@ td a.wage-link {
 td a.wage-link:hover { color: var(--blue-600); border-bottom-style: solid; }
 td.favorable { background: var(--green-50) !important; }
 td.unfavorable { background: var(--red-50) !important; }
+td.na-cell { color: var(--gray-500); font-style: italic; cursor: help; }
 
 .wage-cell { position: relative; }
 .wage-cell .dist-tip {
@@ -269,7 +270,7 @@ footer a { color: var(--blue-600); }
   <div class="container">
     <h1>Copart Compensation Analysis: Competitive Wage Landscape</h1>
     <div class="subtitle">BLS OES May 2024 Market Data &middot; Comparables: Walmart, Home Depot, Costco, Starbucks</div>
-    <div class="meta">Generated {{ data.metadata.generated }} &middot; {{ data.metadata.total_locations }} locations across {{ data.metadata.states_covered }} states &middot; Sorted by blended competitive wage (highest &rarr; lowest)</div>
+    <div class="meta">Generated {{ data.metadata.generated }} &middot; {{ data.metadata.total_locations }} locations across {{ data.metadata.states_covered }} states &middot; Ranked by inverse-distance weighted blended wage &middot; {{ data.metadata.distance_cutoff_mi|int }}-mile cutoff</div>
   </div>
 </header>
 
@@ -457,10 +458,12 @@ footer a { color: var(--blue-600); }
       </ul>
 
       <h3>Quartile Methodology</h3>
-      <p>Facilities are ranked by <strong>blended competitive wage</strong>: the average of all four employer outdoor wage estimates at each location. The 197 locations are then divided into quartiles: Q1 (top 25%, highest competitive wages) through Q4 (bottom 25%, lowest competitive wages). Q1 locations face the most competitive hiring environment.</p>
+      <p>Facilities are ranked by <strong>blended competitive wage</strong>, computed as an inverse-distance weighted average of employer wages within {{ data.metadata.distance_cutoff_mi|int }} miles:</p>
+      <p style="margin:8px 0;font-family:monospace;background:var(--gray-100);padding:8px 12px;border-radius:4px;">Blended = &Sigma;(wage<sub>i</sub> / dist<sub>i</sub>) / &Sigma;(1 / dist<sub>i</sub>)</p>
+      <p>Competitors within {{ data.metadata.distance_cutoff_mi|int }} miles are weighted by 1/distance &mdash; a Walmart 2 miles away has 5&times; the weight of a Costco 10 miles away. Competitors beyond {{ data.metadata.distance_cutoff_mi|int }} miles are excluded and shown as N/A. The 197 locations are then divided into quartiles: Q1 (top 25%, highest competitive wages) through Q4 (bottom 25%, lowest). Q1 locations face the most competitive hiring environment.</p>
 
-      <h3>Distance Estimates</h3>
-      <p>Hover over any employer wage cell to see the estimated distance to the nearest store of that competitor. Distances are estimated based on metro classification (urban/suburban/rural) and typical store density for each retailer. These are directional estimates, not GPS-measured distances.</p>
+      <h3>Distance Estimates &amp; Cutoff</h3>
+      <p>Hover over any employer wage cell to see the estimated distance to the nearest store. If a competitor&rsquo;s nearest store is more than <strong>{{ data.metadata.distance_cutoff_mi|int }} miles</strong> away, it is marked N/A and excluded from the blended score (hover the N/A to see actual distance). The {{ data.metadata.distance_cutoff_mi|int }}-mile cutoff reflects the practical commuting radius for hourly workers (BLS average commute: ~16 miles). Distances are estimated from metro classification and store density; they are directional, not GPS-measured.</p>
 
       <h3>Color Coding</h3>
       <ul>
@@ -491,23 +494,29 @@ const DATA = {{ data_json }};
 const ROLE = { current: 'outdoor' };
 let sortState = { col: 'blended', asc: false };
 
+var CUTOFF = DATA.metadata.distance_cutoff_mi || 25;
+
+function isInRange(loc, empKey) {
+  return loc.in_range && loc.in_range[empKey];
+}
+
 function getVal(loc, field, role) {
   role = role || ROLE.current;
-  const bls = loc.bls && loc.bls[role];
-  const wm = loc.employers && loc.employers['walmart_' + role];
-  const hd = loc.employers && loc.employers['home_depot_' + role];
-  const co = loc.employers && loc.employers['costco_' + role];
-  const sb = loc.employers && loc.employers['starbucks_' + role];
+  var bls = loc.bls && loc.bls[role];
+  var wm = loc.employers && loc.employers['walmart_' + role];
+  var hd = loc.employers && loc.employers['home_depot_' + role];
+  var co = loc.employers && loc.employers['costco_' + role];
+  var sb = loc.employers && loc.employers['starbucks_' + role];
   switch(field) {
     case 'quartile': return loc.quartile;
     case 'yard': return loc.yard;
     case 'city': return loc.city;
     case 'state': return loc.state;
     case 'bls_median': return bls ? bls.median : null;
-    case 'walmart': return wm ? wm.hourly_avg : null;
-    case 'homedepot': return hd ? hd.hourly_avg : null;
-    case 'costco': return co ? co.hourly_avg : null;
-    case 'starbucks': return sb ? sb.hourly_avg : null;
+    case 'walmart': return (wm && isInRange(loc, 'walmart')) ? wm.hourly_avg : null;
+    case 'homedepot': return (hd && isInRange(loc, 'home_depot')) ? hd.hourly_avg : null;
+    case 'costco': return (co && isInRange(loc, 'costco')) ? co.hourly_avg : null;
+    case 'starbucks': return (sb && isInRange(loc, 'starbucks')) ? sb.hourly_avg : null;
     case 'blended': return loc.blended_wage;
   }
 }
@@ -518,8 +527,7 @@ function fmtWage(val, url, title) {
 }
 
 function fmtWageWithDist(val, url, title, distMi) {
-  if (val == null) return '<td>&mdash;</td>';
-  var cls = '';
+  if (val == null) return '';
   return '<a class="wage-link" href="' + url + '" target="_blank" title="' + (title||'') + '">$' + val.toFixed(2) + '</a>' +
     '<span class="dist-tip">Nearest: ' + distMi.toFixed(1) + ' mi</span>';
 }
@@ -571,6 +579,7 @@ function renderTable() {
     var sbUrl = sb ? sb.source_url : '#';
     var blsMedian = bls ? bls.median : null;
     var dist = loc.nearest_distance_mi || {};
+    var ir = loc.in_range || {};
 
     html += '<tr>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
@@ -580,28 +589,40 @@ function renderTable() {
     html += '<td>' + fmtWage(bls ? bls.median : null, blsUrl, blsTitle) + '</td>';
 
     // Walmart
-    html += '<td class="wage-cell ' + cellClass(wm ? wm.hourly_avg : null, blsMedian) + '">';
-    if (wm) { html += fmtWageWithDist(wm.hourly_avg, wmUrl, wm.source_name, dist.walmart || 0); }
-    else { html += '&mdash;'; }
-    html += '</td>';
+    if (wm && ir.walmart) {
+      html += '<td class="wage-cell ' + cellClass(wm.hourly_avg, blsMedian) + '">';
+      html += fmtWageWithDist(wm.hourly_avg, wmUrl, wm.source_name, dist.walmart || 0);
+      html += '</td>';
+    } else {
+      html += '<td class="na-cell" title="Nearest Walmart: ' + (dist.walmart || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
+    }
 
     // Home Depot
-    html += '<td class="wage-cell ' + cellClass(hd ? hd.hourly_avg : null, blsMedian) + '">';
-    if (hd) { html += fmtWageWithDist(hd.hourly_avg, hdUrl, hd.source_name, dist.home_depot || 0); }
-    else { html += '&mdash;'; }
-    html += '</td>';
+    if (hd && ir.home_depot) {
+      html += '<td class="wage-cell ' + cellClass(hd.hourly_avg, blsMedian) + '">';
+      html += fmtWageWithDist(hd.hourly_avg, hdUrl, hd.source_name, dist.home_depot || 0);
+      html += '</td>';
+    } else {
+      html += '<td class="na-cell" title="Nearest Home Depot: ' + (dist.home_depot || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
+    }
 
     // Costco
-    html += '<td class="wage-cell ' + cellClass(co ? co.hourly_avg : null, blsMedian) + '">';
-    if (co) { html += fmtWageWithDist(co.hourly_avg, coUrl, co.source_name, dist.costco || 0); }
-    else { html += '&mdash;'; }
-    html += '</td>';
+    if (co && ir.costco) {
+      html += '<td class="wage-cell ' + cellClass(co.hourly_avg, blsMedian) + '">';
+      html += fmtWageWithDist(co.hourly_avg, coUrl, co.source_name, dist.costco || 0);
+      html += '</td>';
+    } else {
+      html += '<td class="na-cell" title="Nearest Costco: ' + (dist.costco || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
+    }
 
     // Starbucks
-    html += '<td class="wage-cell ' + cellClass(sb ? sb.hourly_avg : null, blsMedian) + '">';
-    if (sb) { html += fmtWageWithDist(sb.hourly_avg, sbUrl, sb.source_name, dist.starbucks || 0); }
-    else { html += '&mdash;'; }
-    html += '</td>';
+    if (sb && ir.starbucks) {
+      html += '<td class="wage-cell ' + cellClass(sb.hourly_avg, blsMedian) + '">';
+      html += fmtWageWithDist(sb.hourly_avg, sbUrl, sb.source_name, dist.starbucks || 0);
+      html += '</td>';
+    } else {
+      html += '<td class="na-cell" title="Nearest Starbucks: ' + (dist.starbucks || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
+    }
 
     html += '<td><strong>$' + loc.blended_wage.toFixed(2) + '</strong></td>';
     html += '</tr>';
