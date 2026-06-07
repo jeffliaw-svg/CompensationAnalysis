@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pip install jinja2 && python3 scripts/generate_data.py && python3 scripts/build_site.py",
+  "outputDirectory": "public",
+  "framework": null
+}

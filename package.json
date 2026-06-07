@@ -1,0 +1,11 @@
+{
+  "name": "copart-compensation-analysis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Copart Competitive Wage Analysis Dashboard",
+  "scripts": {
+    "generate": "python3 scripts/generate_data.py",
+    "build": "python3 scripts/build_site.py",
+    "all": "python3 scripts/generate_data.py && python3 scripts/build_site.py"
+  }
+}
