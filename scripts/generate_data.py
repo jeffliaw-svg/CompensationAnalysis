@@ -80,27 +80,6 @@ STATE_MIN_WAGE = {
 }
 
 # ─────────────────────────────────────────────────────────────────────
-# BLS OES May 2024 National Benchmarks (hourly wages)
-# Sources:
-#   https://www.bls.gov/oes/current/oes537062.htm
-#   https://www.bls.gov/oes/current/oes439061.htm
-# ─────────────────────────────────────────────────────────────────────
-BLS_NATIONAL = {
-    "53-7062": {
-        "title": "Laborers and Freight, Stock, and Material Movers, Hand",
-        "pct10": 14.32, "pct25": 15.88, "median": 18.12,
-        "pct75": 21.26, "pct90": 24.51, "mean": 19.10,
-        "source_national": "https://www.bls.gov/oes/current/oes537062.htm",
-    },
-    "43-9061": {
-        "title": "Office Clerks, General",
-        "pct10": 14.00, "pct25": 16.55, "median": 20.97,
-        "pct75": 25.50, "pct90": 30.69, "mean": 21.80,
-        "source_national": "https://www.bls.gov/oes/current/oes439061.htm",
-    },
-}
-
-# ─────────────────────────────────────────────────────────────────────
 # Employer wage baselines (national averages, hourly)
 # ─────────────────────────────────────────────────────────────────────
 EMPLOYER_BASELINES = {
@@ -550,38 +529,6 @@ def generate_copart_csv():
     return path
 
 
-def generate_bls_csv():
-    path = BASE_DIR / "data" / "bls" / "bls_oes_wages.csv"
-    os.makedirs(path.parent, exist_ok=True)
-    rows = []
-    for st in sorted(STATE_RPP.keys()):
-        rpp = STATE_RPP[st]
-        min_wage = STATE_MIN_WAGE.get(st, 7.25)
-        for soc, info in BLS_NATIONAL.items():
-            source_url = f"https://www.bls.gov/oes/current/oes_{st.lower()}.htm"
-            rows.append({
-                "State": st,
-                "State_Name": STATE_NAMES[st],
-                "SOC_Code": soc,
-                "SOC_Title": info["title"],
-                "Pct10": scale_wage(info["pct10"], rpp, floor=min_wage),
-                "Pct25": scale_wage(info["pct25"], rpp, floor=min_wage),
-                "Median": scale_wage(info["median"], rpp),
-                "Pct75": scale_wage(info["pct75"], rpp),
-                "Pct90": scale_wage(info["pct90"], rpp),
-                "Mean": scale_wage(info["mean"], rpp),
-                "Source_URL": source_url,
-                "Source_National_URL": info["source_national"],
-                "Data_Period": "May 2024",
-            })
-    with open(path, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=rows[0].keys())
-        w.writeheader()
-        w.writerows(rows)
-    print(f"  bls_oes_wages.csv: {len(rows)} rows ({len(rows)//2} states x 2 SOC codes)")
-    return rows
-
-
 def generate_employer_csv():
     path = BASE_DIR / "data" / "employers" / "employer_wages.csv"
     os.makedirs(path.parent, exist_ok=True)
@@ -623,22 +570,7 @@ def generate_employer_csv():
     return rows
 
 
-def build_data_json(bls_rows, emp_rows):
-    bls_by_state = {}
-    for r in bls_rows:
-        st = r["State"]
-        if st not in bls_by_state:
-            bls_by_state[st] = {}
-        soc = r["SOC_Code"]
-        label = "outdoor" if soc == "53-7062" else "indoor"
-        bls_by_state[st][label] = {
-            "soc_code": soc,
-            "soc_title": r["SOC_Title"],
-            "median": r["Median"],
-            "source_url": r["Source_URL"],
-            "source_national_url": r["Source_National_URL"],
-        }
-
+def build_data_json(emp_rows):
     emp_by_state = {}
     for r in emp_rows:
         st = r["State"]
@@ -671,8 +603,6 @@ def build_data_json(bls_rows, emp_rows):
             "address": addr, "zip": zipcode,
             "rpp": STATE_RPP.get(st, 1.0),
         }
-        if st in bls_by_state:
-            loc["bls"] = bls_by_state[st]
         if st in emp_by_state:
             loc["employers"] = emp_by_state[st]
 
@@ -686,28 +616,29 @@ def build_data_json(bls_rows, emp_rows):
         loc["nearest_distance_mi"] = distances
         loc["in_range"] = in_range
 
-        # Inverse-distance weighted blended wage (only in-range competitors)
-        emp_key_map = {
-            "walmart": "walmart_outdoor",
-            "home_depot": "home_depot_outdoor",
-            "costco": "costco_outdoor",
-            "starbucks": "starbucks_outdoor",
-        }
-        weighted_sum = 0.0
-        weight_total = 0.0
-        if st in emp_by_state:
-            for short_key, emp_key in emp_key_map.items():
-                if in_range.get(short_key) and emp_key in emp_by_state[st]:
-                    wage = emp_by_state[st][emp_key]["hourly_avg"]
-                    w = 1.0 / distances[short_key]
-                    weighted_sum += wage * w
-                    weight_total += w
-        loc["blended_wage"] = round(weighted_sum / weight_total, 2) if weight_total > 0 else 0
+        # Inverse-distance weighted blended wage for both role types
+        for role_suffix in ("outdoor", "indoor"):
+            emp_key_map = {
+                "walmart": f"walmart_{role_suffix}",
+                "home_depot": f"home_depot_{role_suffix}",
+                "costco": f"costco_{role_suffix}",
+                "starbucks": f"starbucks_{role_suffix}",
+            }
+            weighted_sum = 0.0
+            weight_total = 0.0
+            if st in emp_by_state:
+                for short_key, emp_key in emp_key_map.items():
+                    if in_range.get(short_key) and emp_key in emp_by_state[st]:
+                        wage = emp_by_state[st][emp_key]["hourly_avg"]
+                        w = 1.0 / distances[short_key]
+                        weighted_sum += wage * w
+                        weight_total += w
+            loc[f"blended_wage_{role_suffix}"] = round(weighted_sum / weight_total, 2) if weight_total > 0 else 0
 
         locations.append(loc)
 
-    # Assign quartiles by blended wage (Q1 = highest)
-    sorted_locs = sorted(locations, key=lambda x: x["blended_wage"], reverse=True)
+    # Assign quartiles by outdoor blended wage (Q1 = highest)
+    sorted_locs = sorted(locations, key=lambda x: x["blended_wage_outdoor"], reverse=True)
     n = len(sorted_locs)
     for i, loc in enumerate(sorted_locs):
         if i < n / 4:
@@ -730,10 +661,6 @@ def build_data_json(bls_rows, emp_rows):
             "location_count": loc_count,
             "rpp": STATE_RPP[st],
         }
-        if st in bls_by_state:
-            entry["bls_outdoor_median"] = bls_by_state[st].get("outdoor", {}).get("median")
-            entry["bls_indoor_median"] = bls_by_state[st].get("indoor", {}).get("median")
-            entry["bls_source_url"] = bls_by_state[st].get("outdoor", {}).get("source_url")
         if st in emp_by_state:
             entry["walmart_outdoor"] = emp_by_state[st].get("walmart_outdoor", {}).get("hourly_avg")
             entry["walmart_indoor"] = emp_by_state[st].get("walmart_indoor", {}).get("hourly_avg")
@@ -746,31 +673,13 @@ def build_data_json(bls_rows, emp_rows):
         state_summary.append(entry)
     state_summary.sort(key=lambda x: x["location_count"], reverse=True)
 
-    bls_nat = BLS_NATIONAL
     data = {
         "metadata": {
             "generated": "2026-06-07",
-            "bls_data_period": "May 2024",
             "employer_data_period": "Q1 2026",
             "total_locations": len(COPART_LOCATIONS),
             "states_covered": len(set(l[2] for l in COPART_LOCATIONS)),
             "distance_cutoff_mi": DISTANCE_CUTOFF_MI,
-        },
-        "national_benchmarks": {
-            "outdoor": {
-                "soc_code": "53-7062",
-                "soc_title": bls_nat["53-7062"]["title"],
-                "median": bls_nat["53-7062"]["median"],
-                "mean": bls_nat["53-7062"]["mean"],
-                "source_url": bls_nat["53-7062"]["source_national"],
-            },
-            "indoor": {
-                "soc_code": "43-9061",
-                "soc_title": bls_nat["43-9061"]["title"],
-                "median": bls_nat["43-9061"]["median"],
-                "mean": bls_nat["43-9061"]["mean"],
-                "source_url": bls_nat["43-9061"]["source_national"],
-            },
         },
         "employer_sources": {
             "walmart": {
@@ -812,9 +721,8 @@ def build_data_json(bls_rows, emp_rows):
 def main():
     print("Generating Copart Compensation Analysis data...")
     generate_copart_csv()
-    bls_rows = generate_bls_csv()
     emp_rows = generate_employer_csv()
-    build_data_json(bls_rows, emp_rows)
+    build_data_json(emp_rows)
     print("Done.")
 
 
