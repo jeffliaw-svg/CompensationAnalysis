@@ -151,6 +151,13 @@ td a.wage-link:hover { color: var(--blue-600); border-bottom-style: solid; }
 td.favorable { background: var(--green-50) !important; }
 td.unfavorable { background: var(--red-50) !important; }
 td.na-cell { color: var(--gray-500); font-style: italic; cursor: help; }
+tr.subtotal-row td {
+  background: var(--gray-200) !important;
+  border-top: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  font-size: 12px;
+  padding: 6px 10px;
+}
 
 .wage-cell { position: relative; }
 .wage-cell .dist-tip {
@@ -565,7 +572,8 @@ function renderTable() {
   }
 
   var html = '';
-  locs.forEach(function(loc) {
+  var qGroups = {};
+  locs.forEach(function(loc, idx) {
     var bls = loc.bls && loc.bls[role];
     var wm = loc.employers && loc.employers['walmart_' + role];
     var hd = loc.employers && loc.employers['home_depot_' + role];
@@ -583,7 +591,7 @@ function renderTable() {
 
     html += '<tr>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
-    html += '<td><strong>' + loc.yard + '</strong></td>';
+    html += '<td title="' + loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip + '"><strong>' + loc.yard + '</strong></td>';
     html += '<td>' + loc.city + '</td>';
     html += '<td>' + loc.state + '</td>';
     html += '<td>' + fmtWage(bls ? bls.median : null, blsUrl, blsTitle) + '</td>';
@@ -626,6 +634,30 @@ function renderTable() {
 
     html += '<td><strong>$' + loc.blended_wage.toFixed(2) + '</strong></td>';
     html += '</tr>';
+
+    // Track for quartile subtotals
+    if (!qGroups[loc.quartile]) qGroups[loc.quartile] = [];
+    qGroups[loc.quartile].push(loc);
+
+    // Insert subtotal row at quartile boundary
+    var nextLoc = locs[idx + 1];
+    if (!nextLoc || nextLoc.quartile !== loc.quartile) {
+      var group = qGroups[loc.quartile];
+      if (group && group.length > 0) {
+        var qBlended = group.map(function(l) { return l.blended_wage; });
+        var qMean = qBlended.reduce(function(a,b) { return a+b; }, 0) / qBlended.length;
+        var sorted = qBlended.slice().sort(function(a,b) { return a-b; });
+        var qMedian = sorted.length % 2 === 0
+          ? (sorted[sorted.length/2-1] + sorted[sorted.length/2]) / 2
+          : sorted[Math.floor(sorted.length/2)];
+        html += '<tr class="subtotal-row">';
+        html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
+        html += '<td colspan="3"><strong>Q' + loc.quartile + ' Subtotal</strong> (' + group.length + ' locations)</td>';
+        html += '<td></td><td></td><td></td><td></td><td></td>';
+        html += '<td><strong>Mean $' + qMean.toFixed(2) + ' / Med $' + qMedian.toFixed(2) + '</strong></td>';
+        html += '</tr>';
+      }
+    }
   });
   tbody.innerHTML = html;
   document.getElementById('rowCount').textContent = locs.length + ' of ' + DATA.locations.length + ' locations';
