@@ -186,7 +186,9 @@ td.na-cell { color: var(--gray-500); font-style: italic; cursor: help; }
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 11px;
-  white-space: nowrap;
+  white-space: normal;
+  width: 180px;
+  text-align: center;
   z-index: 10;
   pointer-events: none;
 }
