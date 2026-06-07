@@ -33,6 +33,10 @@ TEMPLATE = r"""<!DOCTYPE html>
   --red-600: #e53e3e;
   --blue-600: #2b6cb0;
   --blue-700: #2c5282;
+  --q1: #1a365d;
+  --q2: #2b6cb0;
+  --q3: #ed8936;
+  --q4: #e53e3e;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -41,7 +45,7 @@ body {
   background: var(--gray-100);
   line-height: 1.5;
 }
-.container { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1600px; margin: 0 auto; padding: 0 24px; }
 header {
   background: var(--navy);
   color: var(--white);
@@ -54,22 +58,22 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
   margin-bottom: 36px;
 }
 .card {
   background: var(--white);
   border-radius: 8px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   border-top: 3px solid var(--navy);
 }
-.card .label { font-size: 13px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-.card .value { font-size: 28px; font-weight: 700; color: var(--navy); }
+.card .label { font-size: 12px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.card .value { font-size: 24px; font-weight: 700; color: var(--navy); }
 .card .value a { color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--gray-500); }
 .card .value a:hover { border-bottom-color: var(--navy); }
-.card .detail { font-size: 13px; color: var(--slate); margin-top: 6px; }
+.card .detail { font-size: 12px; color: var(--slate); margin-top: 4px; }
 
 .section { margin-bottom: 40px; }
 .section-title {
@@ -110,7 +114,7 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
   background: var(--white);
 }
 .controls input { flex: 1; min-width: 200px; max-width: 360px; }
-.controls select { min-width: 160px; }
+.controls select { min-width: 140px; }
 .controls label { font-size: 13px; color: var(--slate); font-weight: 500; }
 
 .table-wrap {
@@ -122,7 +126,7 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 thead { background: var(--navy); color: var(--white); position: sticky; top: 0; z-index: 2; }
 th {
-  padding: 10px 12px;
+  padding: 10px 10px;
   text-align: left;
   font-weight: 600;
   cursor: pointer;
@@ -130,9 +134,9 @@ th {
   user-select: none;
 }
 th:hover { background: var(--navy-light); }
-th .sort-arrow { font-size: 10px; margin-left: 4px; opacity: 0.6; }
+th .sort-arrow { font-size: 10px; margin-left: 3px; opacity: 0.6; }
 th.sorted .sort-arrow { opacity: 1; }
-td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); }
+td { padding: 7px 10px; border-bottom: 1px solid var(--gray-200); }
 tr:hover td { background: var(--gray-100); }
 tr:nth-child(even) td { background: var(--gray-100); }
 tr:nth-child(even):hover td { background: var(--gray-200); }
@@ -141,10 +145,51 @@ td a.wage-link {
   color: var(--blue-700);
   text-decoration: none;
   border-bottom: 1px dotted var(--gray-500);
+  position: relative;
 }
 td a.wage-link:hover { color: var(--blue-600); border-bottom-style: solid; }
 td.favorable { background: var(--green-50) !important; }
 td.unfavorable { background: var(--red-50) !important; }
+
+.wage-cell { position: relative; }
+.wage-cell .dist-tip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: var(--white);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+.wage-cell .dist-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--navy);
+}
+.wage-cell:hover .dist-tip { display: block; }
+
+.q-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+}
+.q-badge.q1 { background: var(--q1); }
+.q-badge.q2 { background: var(--q2); }
+.q-badge.q3 { background: var(--q3); }
+.q-badge.q4 { background: var(--q4); }
 
 .methodology {
   background: var(--white);
@@ -194,14 +239,16 @@ footer {
 }
 footer a { color: var(--blue-600); }
 
-.legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; align-items: center; }
+.legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; align-items: center; flex-wrap: wrap; }
 .legend-item { display: flex; align-items: center; gap: 4px; }
 .legend-swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
 
 .row-count { font-size: 13px; color: var(--gray-500); margin-bottom: 8px; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .charts-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
   .cards { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
@@ -221,8 +268,8 @@ footer a { color: var(--blue-600); }
 <header>
   <div class="container">
     <h1>Copart Compensation Analysis: Competitive Wage Landscape</h1>
-    <div class="subtitle">BLS OES May 2024 Market Data &middot; Tier 1 Comparables: Walmart, Home Depot</div>
-    <div class="meta">Generated {{ data.metadata.generated }} &middot; {{ data.metadata.total_locations }} locations across {{ data.metadata.states_covered }} states</div>
+    <div class="subtitle">BLS OES May 2024 Market Data &middot; Comparables: Walmart, Home Depot, Costco, Starbucks</div>
+    <div class="meta">Generated {{ data.metadata.generated }} &middot; {{ data.metadata.total_locations }} locations across {{ data.metadata.states_covered }} states &middot; Sorted by blended competitive wage (highest &rarr; lowest)</div>
   </div>
 </header>
 
@@ -236,24 +283,34 @@ footer a { color: var(--blue-600); }
       <div class="detail">Across {{ data.metadata.states_covered }} states</div>
     </div>
     <div class="card">
-      <div class="label">Market Median &mdash; Outdoor</div>
+      <div class="label">BLS Median &mdash; Outdoor</div>
       <div class="value"><a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank" title="BLS OES: {{ data.national_benchmarks.outdoor.soc_title }}">${{ "%.2f"|format(data.national_benchmarks.outdoor.median) }}</a>/hr</div>
       <div class="detail">SOC {{ data.national_benchmarks.outdoor.soc_code }}</div>
     </div>
     <div class="card">
-      <div class="label">Market Median &mdash; Indoor</div>
+      <div class="label">BLS Median &mdash; Indoor</div>
       <div class="value"><a href="{{ data.national_benchmarks.indoor.source_url }}" target="_blank" title="BLS OES: {{ data.national_benchmarks.indoor.soc_title }}">${{ "%.2f"|format(data.national_benchmarks.indoor.median) }}</a>/hr</div>
       <div class="detail">SOC {{ data.national_benchmarks.indoor.soc_code }}</div>
     </div>
     <div class="card">
-      <div class="label">Walmart Avg (Outdoor)</div>
-      <div class="value"><a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank" title="Indeed: Walmart Stocker salaries">${% set wm_avg = [] %}{%- for s in data.state_summary %}{%- if s.walmart_outdoor_avg %}{{ wm_avg.append(s.walmart_outdoor_avg) or '' }}{%- endif %}{%- endfor %}{{ "%.2f"|format(wm_avg|sum / wm_avg|length) }}</a>/hr</div>
-      <div class="detail">Stocking/Unloading, national avg</div>
+      <div class="label">Walmart (Outdoor)</div>
+      <div class="value"><a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">{%- set wm_avg = [] %}{%- for s in data.state_summary %}{%- if s.walmart_outdoor %}{{ wm_avg.append(s.walmart_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(wm_avg|sum / wm_avg|length) }}</a>/hr</div>
+      <div class="detail">Stocking, national avg</div>
     </div>
     <div class="card">
-      <div class="label">Home Depot Avg (Outdoor)</div>
-      <div class="value"><a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank" title="Indeed: Home Depot Lot Attendant salaries">{%- set hd_avg = [] %}{%- for s in data.state_summary %}{%- if s.homedepot_outdoor_avg %}{{ hd_avg.append(s.homedepot_outdoor_avg) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(hd_avg|sum / hd_avg|length) }}</a>/hr</div>
-      <div class="detail">Lot/Receiving Associate, national avg</div>
+      <div class="label">Home Depot (Outdoor)</div>
+      <div class="value"><a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">{%- set hd_avg = [] %}{%- for s in data.state_summary %}{%- if s.homedepot_outdoor %}{{ hd_avg.append(s.homedepot_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(hd_avg|sum / hd_avg|length) }}</a>/hr</div>
+      <div class="detail">Lot Associate, national avg</div>
+    </div>
+    <div class="card">
+      <div class="label">Costco (Outdoor)</div>
+      <div class="value"><a href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">{%- set co_avg = [] %}{%- for s in data.state_summary %}{%- if s.costco_outdoor %}{{ co_avg.append(s.costco_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(co_avg|sum / co_avg|length) }}</a>/hr</div>
+      <div class="detail">Cart Attendant, national avg</div>
+    </div>
+    <div class="card">
+      <div class="label">Starbucks (Outdoor)</div>
+      <div class="value"><a href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">{%- set sb_avg = [] %}{%- for s in data.state_summary %}{%- if s.starbucks_outdoor %}{{ sb_avg.append(s.starbucks_outdoor) or '' }}{%- endif %}{%- endfor %}${{ "%.2f"|format(sb_avg|sum / sb_avg|length) }}</a>/hr</div>
+      <div class="detail">Barista, national avg</div>
     </div>
   </div>
 
@@ -262,28 +319,28 @@ footer a { color: var(--blue-600); }
     <h2 class="section-title">Wage Comparison by State (Top 15 by Copart Location Count)</h2>
     <div class="charts-grid">
       <div class="chart-card">
-        <h3>Outdoor Roles: BLS Market Median vs. Employer Averages</h3>
+        <h3>Outdoor Roles: BLS Median vs. Employers</h3>
         <canvas id="chartOutdoor"></canvas>
       </div>
       <div class="chart-card">
-        <h3>Indoor Roles: BLS Market Median vs. Employer Averages</h3>
+        <h3>Indoor Roles: BLS Median vs. Employers</h3>
         <canvas id="chartIndoor"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- Tabs: Location Detail / State Summary -->
+  <!-- Tabs -->
   <div class="section">
     <h2 class="section-title">Detailed Compensation Data</h2>
     <div class="tab-row">
-      <button class="tab-btn active" onclick="switchTab('locations')">All Locations</button>
+      <button class="tab-btn active" onclick="switchTab('locations')">All Locations (by Quartile)</button>
       <button class="tab-btn" onclick="switchTab('states')">State Summary</button>
     </div>
 
     <!-- Location Detail Tab -->
     <div id="tab-locations" class="tab-content active">
       <div class="controls">
-        <input type="text" id="searchInput" placeholder="Search by yard name or city..." oninput="filterTable()">
+        <input type="text" id="searchInput" placeholder="Search by yard name, city, or state..." oninput="filterTable()">
         <select id="stateFilter" onchange="filterTable()">
           <option value="">All States</option>
           {%- for s in data.state_summary %}
@@ -294,25 +351,37 @@ footer a { color: var(--blue-600); }
           <option value="outdoor">Outdoor Roles</option>
           <option value="indoor">Indoor Roles</option>
         </select>
+        <select id="quartileFilter" onchange="filterTable()">
+          <option value="">All Quartiles</option>
+          <option value="1">Q1 &mdash; Highest Wages</option>
+          <option value="2">Q2</option>
+          <option value="3">Q3</option>
+          <option value="4">Q4 &mdash; Lowest Wages</option>
+        </select>
       </div>
       <div class="legend">
-        <span class="legend-item"><span class="legend-swatch" style="background:var(--green-50);border:1px solid var(--green-600)"></span> Employer below BLS median (favorable)</span>
-        <span class="legend-item"><span class="legend-swatch" style="background:var(--red-50);border:1px solid var(--red-600)"></span> Employer above BLS median (competitive pressure)</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--green-50);border:1px solid var(--green-600)"></span> Below BLS median</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--red-50);border:1px solid var(--red-600)"></span> Above BLS median</span>
+        <span class="legend-item" style="margin-left:12px;"><span class="q-badge q1">Q1</span> Highest</span>
+        <span class="legend-item"><span class="q-badge q2">Q2</span></span>
+        <span class="legend-item"><span class="q-badge q3">Q3</span></span>
+        <span class="legend-item"><span class="q-badge q4">Q4</span> Lowest</span>
       </div>
       <div class="row-count" id="rowCount"></div>
       <div class="table-wrap">
         <table id="locTable">
           <thead>
             <tr>
+              <th data-col="quartile" onclick="sortTable('quartile')">Q <span class="sort-arrow">&#9650;</span></th>
               <th data-col="yard" onclick="sortTable('yard')">Yard Name <span class="sort-arrow">&#9650;</span></th>
               <th data-col="city" onclick="sortTable('city')">City <span class="sort-arrow">&#9650;</span></th>
               <th data-col="state" onclick="sortTable('state')">State <span class="sort-arrow">&#9650;</span></th>
               <th data-col="bls_median" onclick="sortTable('bls_median')">BLS Median <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="bls_p25" onclick="sortTable('bls_p25')">BLS P25 <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="bls_p75" onclick="sortTable('bls_p75')">BLS P75 <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="walmart" onclick="sortTable('walmart')">Walmart Avg <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="homedepot" onclick="sortTable('homedepot')">Home Depot Avg <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="rpp" onclick="sortTable('rpp')">RPP <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="walmart" onclick="sortTable('walmart')">Walmart <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="homedepot" onclick="sortTable('homedepot')">Home Depot <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="costco" onclick="sortTable('costco')">Costco <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="starbucks" onclick="sortTable('starbucks')">Starbucks <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="blended" onclick="sortTable('blended')">Blended <span class="sort-arrow">&#9650;</span></th>
             </tr>
           </thead>
           <tbody id="locBody"></tbody>
@@ -329,12 +398,12 @@ footer a { color: var(--blue-600); }
               <th>State</th>
               <th>Locations</th>
               <th>RPP</th>
-              <th>BLS Outdoor Median</th>
-              <th>BLS Indoor Median</th>
-              <th>Walmart Outdoor</th>
-              <th>Walmart Indoor</th>
-              <th>Home Depot Outdoor</th>
-              <th>Home Depot Indoor</th>
+              <th>BLS Outdoor</th>
+              <th>BLS Indoor</th>
+              <th>Walmart</th>
+              <th>Home Depot</th>
+              <th>Costco</th>
+              <th>Starbucks</th>
             </tr>
           </thead>
           <tbody>
@@ -345,10 +414,10 @@ footer a { color: var(--blue-600); }
               <td>{{ "%.3f"|format(s.rpp) }}</td>
               <td>{% if s.bls_outdoor_median %}<a class="wage-link" href="{{ s.bls_source_url }}" target="_blank">${{ "%.2f"|format(s.bls_outdoor_median) }}</a>{% else %}&mdash;{% endif %}</td>
               <td>{% if s.bls_indoor_median %}<a class="wage-link" href="{{ s.bls_source_url }}" target="_blank">${{ "%.2f"|format(s.bls_indoor_median) }}</a>{% else %}&mdash;{% endif %}</td>
-              <td>{% if s.walmart_outdoor_avg %}<a class="wage-link" href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.walmart_outdoor_avg) }}</a>{% else %}&mdash;{% endif %}</td>
-              <td>{% if s.walmart_indoor_avg %}<a class="wage-link" href="{{ data.employer_sources.walmart.indoor_indeed }}" target="_blank">${{ "%.2f"|format(s.walmart_indoor_avg) }}</a>{% else %}&mdash;{% endif %}</td>
-              <td>{% if s.homedepot_outdoor_avg %}<a class="wage-link" href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.homedepot_outdoor_avg) }}</a>{% else %}&mdash;{% endif %}</td>
-              <td>{% if s.homedepot_indoor_avg %}<a class="wage-link" href="{{ data.employer_sources.home_depot.indoor_indeed }}" target="_blank">${{ "%.2f"|format(s.homedepot_indoor_avg) }}</a>{% else %}&mdash;{% endif %}</td>
+              <td>{% if s.walmart_outdoor %}<a class="wage-link" href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.walmart_outdoor) }}</a>{% else %}&mdash;{% endif %}</td>
+              <td>{% if s.homedepot_outdoor %}<a class="wage-link" href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.homedepot_outdoor) }}</a>{% else %}&mdash;{% endif %}</td>
+              <td>{% if s.costco_outdoor %}<a class="wage-link" href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.costco_outdoor) }}</a>{% else %}&mdash;{% endif %}</td>
+              <td>{% if s.starbucks_outdoor %}<a class="wage-link" href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(s.starbucks_outdoor) }}</a>{% else %}&mdash;{% endif %}</td>
             </tr>
             {%- endfor %}
           </tbody>
@@ -363,49 +432,40 @@ footer a { color: var(--blue-600); }
     <div class="methodology">
 
       <h3>Overview</h3>
-      <p>This analysis benchmarks the competitive wage environment for Copart operations roles against two Tier 1 comparable employers (Walmart and Home Depot) and the BLS market baseline, across all {{ data.metadata.total_locations }} Copart US locations.</p>
+      <p>This analysis benchmarks the competitive wage environment for Copart operations roles against four comparable employers (Walmart, Home Depot, Costco, and Starbucks) and the BLS market baseline, across all {{ data.metadata.total_locations }} Copart US locations. Facilities are ranked by blended competitive wage and divided into quartiles (Q1 highest to Q4 lowest).</p>
 
       <h3>Role Mapping</h3>
       <table>
-        <thead><tr><th>Tier</th><th>Employer</th><th>Outdoor Role Analog</th><th>Indoor Role Analog</th></tr></thead>
+        <thead><tr><th>Employer</th><th>Outdoor Role Analog</th><th>Indoor Role Analog</th><th>Company Floor</th></tr></thead>
         <tbody>
-          <tr><td>Baseline</td><td>BLS OES</td><td><a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank">SOC 53-7062: {{ data.national_benchmarks.outdoor.soc_title }}</a></td><td><a href="{{ data.national_benchmarks.indoor.source_url }}" target="_blank">SOC 43-9061: {{ data.national_benchmarks.indoor.soc_title }}</a></td></tr>
-          <tr><td>Tier 1</td><td>Walmart</td><td><a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">Stocking/Unloading Associate</a></td><td><a href="{{ data.employer_sources.walmart.indoor_indeed }}" target="_blank">Cashier/Customer Service</a></td></tr>
-          <tr><td>Tier 1</td><td>Home Depot</td><td><a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">Lot Associate / Receiving</a></td><td><a href="{{ data.employer_sources.home_depot.indoor_indeed }}" target="_blank">Cashier/Customer Service</a></td></tr>
+          <tr><td>BLS OES</td><td><a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank">SOC 53-7062</a></td><td><a href="{{ data.national_benchmarks.indoor.source_url }}" target="_blank">SOC 43-9061</a></td><td>&mdash;</td></tr>
+          <tr><td>Walmart</td><td><a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">Stocking/Unloading</a></td><td><a href="{{ data.employer_sources.walmart.indoor_indeed }}" target="_blank">Cashier</a></td><td>$14.00/hr</td></tr>
+          <tr><td>Home Depot</td><td><a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">Lot Associate</a></td><td><a href="{{ data.employer_sources.home_depot.indoor_indeed }}" target="_blank">Cashier</a></td><td>$15.00/hr</td></tr>
+          <tr><td>Costco</td><td><a href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">Cart Attendant</a></td><td><a href="{{ data.employer_sources.costco.indoor_indeed }}" target="_blank">Front End Assistant</a></td><td>$20.00/hr</td></tr>
+          <tr><td>Starbucks</td><td><a href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">Barista</a></td><td><a href="{{ data.employer_sources.starbucks.indoor_indeed }}" target="_blank">Barista</a></td><td>$15.00/hr</td></tr>
         </tbody>
       </table>
 
       <h3>Data Sources</h3>
       <ul>
-        <li><strong>BLS OES (May 2024):</strong> <a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank">Occupational Employment and Wage Statistics</a>. National percentile benchmarks adjusted to state level using BEA Regional Price Parities.</li>
-        <li><strong>BEA Regional Price Parities (2023):</strong> <a href="{{ data.employer_sources.bea_rpp }}" target="_blank">Bureau of Economic Analysis</a>. State-level price indices used to scale national wage benchmarks to reflect local cost-of-living differences.</li>
-        <li><strong>Walmart wages:</strong> <a href="{{ data.employer_sources.walmart.corporate }}" target="_blank">Walmart Corporate Disclosure</a>, <a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">Indeed Stocker Salaries</a>, <a href="{{ data.employer_sources.walmart.indoor_indeed }}" target="_blank">Indeed Cashier Salaries</a>, <a href="{{ data.employer_sources.walmart.glassdoor }}" target="_blank">Glassdoor</a>.</li>
-        <li><strong>Home Depot wages:</strong> <a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">Indeed Lot Attendant Salaries</a>, <a href="{{ data.employer_sources.home_depot.indoor_indeed }}" target="_blank">Indeed Cashier Salaries</a>, <a href="{{ data.employer_sources.home_depot.glassdoor }}" target="_blank">Glassdoor</a>.</li>
+        <li><strong>BLS OES (May 2024):</strong> <a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank">Occupational Employment and Wage Statistics</a>. National median adjusted to state level using BEA Regional Price Parities.</li>
+        <li><strong>BEA Regional Price Parities (2023):</strong> <a href="{{ data.employer_sources.bea_rpp }}" target="_blank">Bureau of Economic Analysis</a>.</li>
+        <li><strong>Walmart:</strong> <a href="{{ data.employer_sources.walmart.corporate }}" target="_blank">Corporate Disclosure</a>, <a href="{{ data.employer_sources.walmart.outdoor_indeed }}" target="_blank">Indeed</a>.</li>
+        <li><strong>Home Depot:</strong> <a href="{{ data.employer_sources.home_depot.glassdoor }}" target="_blank">Glassdoor</a>, <a href="{{ data.employer_sources.home_depot.outdoor_indeed }}" target="_blank">Indeed</a>.</li>
+        <li><strong>Costco:</strong> <a href="{{ data.employer_sources.costco.corporate }}" target="_blank">Gridwise Pay Guide</a>, <a href="{{ data.employer_sources.costco.fortune }}" target="_blank">Fortune</a> (Teamsters agreement: $20/hr floor, rising to $22/hr by Mar 2027).</li>
+        <li><strong>Starbucks:</strong> <a href="{{ data.employer_sources.starbucks.official }}" target="_blank">Starbucks Corporate</a>, <a href="{{ data.employer_sources.starbucks.corporate }}" target="_blank">Gridwise Pay Guide</a> ($15/hr floor, ~$17/hr avg).</li>
       </ul>
 
-      <h3>State-Level Adjustment Methodology</h3>
-      <p>National wage benchmarks are adjusted to each state using the formula: <code>State Wage = National Wage &times; (State RPP / National RPP)</code>. RPP (Regional Price Parity) values from the BEA measure price-level differences across states. This provides a consistent, defensible mechanism for estimating state-level wages from nationally verified benchmarks.</p>
-      <p>State minimum wage floors are applied: no estimated wage falls below the applicable state or federal minimum wage.</p>
+      <h3>Quartile Methodology</h3>
+      <p>Facilities are ranked by <strong>blended competitive wage</strong>: the average of all four employer outdoor wage estimates at each location. The 197 locations are then divided into quartiles: Q1 (top 25%, highest competitive wages) through Q4 (bottom 25%, lowest competitive wages). Q1 locations face the most competitive hiring environment.</p>
 
-      <h3>Employer Minimum Wage Floors</h3>
-      <ul>
-        <li>Walmart company-wide minimum: $14.00/hr (applied globally)</li>
-        <li>Home Depot company-wide minimum: $15.00/hr (since February 2023)</li>
-        <li>State minimum wages override employer floors where higher</li>
-      </ul>
+      <h3>Distance Estimates</h3>
+      <p>Hover over any employer wage cell to see the estimated distance to the nearest store of that competitor. Distances are estimated based on metro classification (urban/suburban/rural) and typical store density for each retailer. These are directional estimates, not GPS-measured distances.</p>
 
       <h3>Color Coding</h3>
       <ul>
-        <li><span style="background:var(--green-50);padding:2px 8px;border:1px solid var(--green-600);border-radius:3px;">Green</span> &mdash; Employer average is <em>below</em> BLS market median. Indicates Copart is more competitive relative to this employer in this market.</li>
-        <li><span style="background:var(--red-50);padding:2px 8px;border:1px solid var(--red-600);border-radius:3px;">Red</span> &mdash; Employer average is <em>above</em> BLS market median. Indicates competitive pressure from this employer.</li>
-      </ul>
-
-      <h3>Limitations</h3>
-      <ul>
-        <li>BLS OES data reflects the May 2024 survey period (most recent available). Employer data reflects Q1 2026 aggregated salary reports.</li>
-        <li>State-level employer wages are estimated from national averages scaled by RPP, not from individual store-level postings. Actual wages may vary by metro area.</li>
-        <li>This analysis does not include benefits, shift differentials, or non-wage compensation.</li>
-        <li>Distance to nearest competitor location is not yet incorporated (future enhancement).</li>
+        <li><span style="background:var(--green-50);padding:2px 8px;border:1px solid var(--green-600);border-radius:3px;">Green</span> &mdash; Employer wage is below BLS market median.</li>
+        <li><span style="background:var(--red-50);padding:2px 8px;border:1px solid var(--red-600);border-radius:3px;">Red</span> &mdash; Employer wage is above BLS market median (competitive pressure).</li>
       </ul>
 
     </div>
@@ -419,6 +479,8 @@ footer a { color: var(--blue-600); }
     Data: <a href="{{ data.national_benchmarks.outdoor.source_url }}" target="_blank">BLS OES</a>,
     <a href="{{ data.employer_sources.walmart.corporate }}" target="_blank">Walmart</a>,
     <a href="{{ data.employer_sources.home_depot.glassdoor }}" target="_blank">Home Depot</a>,
+    <a href="{{ data.employer_sources.costco.corporate }}" target="_blank">Costco</a>,
+    <a href="{{ data.employer_sources.starbucks.corporate }}" target="_blank">Starbucks</a>,
     <a href="{{ data.employer_sources.bea_rpp }}" target="_blank">BEA RPP</a>
   </div>
 </footer>
@@ -427,23 +489,26 @@ footer a { color: var(--blue-600); }
 const DATA = {{ data_json }};
 
 const ROLE = { current: 'outdoor' };
-let sortState = { col: null, asc: true };
+let sortState = { col: 'blended', asc: false };
 
 function getVal(loc, field, role) {
   role = role || ROLE.current;
   const bls = loc.bls && loc.bls[role];
   const wm = loc.employers && loc.employers['walmart_' + role];
   const hd = loc.employers && loc.employers['home_depot_' + role];
+  const co = loc.employers && loc.employers['costco_' + role];
+  const sb = loc.employers && loc.employers['starbucks_' + role];
   switch(field) {
+    case 'quartile': return loc.quartile;
     case 'yard': return loc.yard;
     case 'city': return loc.city;
     case 'state': return loc.state;
     case 'bls_median': return bls ? bls.median : null;
-    case 'bls_p25': return bls ? bls.pct25 : null;
-    case 'bls_p75': return bls ? bls.pct75 : null;
     case 'walmart': return wm ? wm.hourly_avg : null;
     case 'homedepot': return hd ? hd.hourly_avg : null;
-    case 'rpp': return loc.rpp;
+    case 'costco': return co ? co.hourly_avg : null;
+    case 'starbucks': return sb ? sb.hourly_avg : null;
+    case 'blended': return loc.blended_wage;
   }
 }
 
@@ -452,27 +517,36 @@ function fmtWage(val, url, title) {
   return '<a class="wage-link" href="' + url + '" target="_blank" title="' + (title||'') + '">$' + val.toFixed(2) + '</a>';
 }
 
+function fmtWageWithDist(val, url, title, distMi) {
+  if (val == null) return '<td>&mdash;</td>';
+  var cls = '';
+  return '<a class="wage-link" href="' + url + '" target="_blank" title="' + (title||'') + '">$' + val.toFixed(2) + '</a>' +
+    '<span class="dist-tip">Nearest: ' + distMi.toFixed(1) + ' mi</span>';
+}
+
 function cellClass(empVal, blsMedian) {
   if (empVal == null || blsMedian == null) return '';
   return empVal < blsMedian ? 'favorable' : empVal > blsMedian ? 'unfavorable' : '';
 }
 
 function renderTable() {
-  const role = ROLE.current;
-  const tbody = document.getElementById('locBody');
-  const search = document.getElementById('searchInput').value.toLowerCase();
-  const stateF = document.getElementById('stateFilter').value;
+  var role = ROLE.current;
+  var tbody = document.getElementById('locBody');
+  var search = document.getElementById('searchInput').value.toLowerCase();
+  var stateF = document.getElementById('stateFilter').value;
+  var qF = document.getElementById('quartileFilter').value;
 
-  let locs = DATA.locations.filter(l => {
+  var locs = DATA.locations.filter(function(l) {
     if (stateF && l.state !== stateF) return false;
-    if (search && !(l.yard.toLowerCase().includes(search) || l.city.toLowerCase().includes(search) || l.state.toLowerCase().includes(search))) return false;
+    if (qF && l.quartile !== parseInt(qF)) return false;
+    if (search && !(l.yard.toLowerCase().indexOf(search) >= 0 || l.city.toLowerCase().indexOf(search) >= 0 || l.state.toLowerCase().indexOf(search) >= 0 || l.state_name.toLowerCase().indexOf(search) >= 0)) return false;
     return true;
   });
 
   if (sortState.col) {
-    locs.sort((a, b) => {
-      let va = getVal(a, sortState.col, role);
-      let vb = getVal(b, sortState.col, role);
+    locs.sort(function(a, b) {
+      var va = getVal(a, sortState.col, role);
+      var vb = getVal(b, sortState.col, role);
       if (va == null && vb == null) return 0;
       if (va == null) return 1;
       if (vb == null) return -1;
@@ -482,27 +556,54 @@ function renderTable() {
     });
   }
 
-  let html = '';
-  locs.forEach(loc => {
-    const bls = loc.bls && loc.bls[role];
-    const wm = loc.employers && loc.employers['walmart_' + role];
-    const hd = loc.employers && loc.employers['home_depot_' + role];
-    const blsUrl = bls ? bls.source_url : '#';
-    const blsTitle = bls ? 'BLS OES ' + bls.soc_code + ' - ' + loc.state_name : '';
-    const wmUrl = wm ? wm.source_url : '#';
-    const hdUrl = hd ? hd.source_url : '#';
-    const blsMedian = bls ? bls.median : null;
+  var html = '';
+  locs.forEach(function(loc) {
+    var bls = loc.bls && loc.bls[role];
+    var wm = loc.employers && loc.employers['walmart_' + role];
+    var hd = loc.employers && loc.employers['home_depot_' + role];
+    var co = loc.employers && loc.employers['costco_' + role];
+    var sb = loc.employers && loc.employers['starbucks_' + role];
+    var blsUrl = bls ? bls.source_url : '#';
+    var blsTitle = bls ? 'BLS OES ' + bls.soc_code + ' - ' + loc.state_name : '';
+    var wmUrl = wm ? wm.source_url : '#';
+    var hdUrl = hd ? hd.source_url : '#';
+    var coUrl = co ? co.source_url : '#';
+    var sbUrl = sb ? sb.source_url : '#';
+    var blsMedian = bls ? bls.median : null;
+    var dist = loc.nearest_distance_mi || {};
 
     html += '<tr>';
+    html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
     html += '<td><strong>' + loc.yard + '</strong></td>';
     html += '<td>' + loc.city + '</td>';
     html += '<td>' + loc.state + '</td>';
     html += '<td>' + fmtWage(bls ? bls.median : null, blsUrl, blsTitle) + '</td>';
-    html += '<td>' + fmtWage(bls ? bls.pct25 : null, blsUrl, blsTitle) + '</td>';
-    html += '<td>' + fmtWage(bls ? bls.pct75 : null, blsUrl, blsTitle) + '</td>';
-    html += '<td class="' + cellClass(wm ? wm.hourly_avg : null, blsMedian) + '">' + fmtWage(wm ? wm.hourly_avg : null, wmUrl, wm ? wm.source_name : '') + '</td>';
-    html += '<td class="' + cellClass(hd ? hd.hourly_avg : null, blsMedian) + '">' + fmtWage(hd ? hd.hourly_avg : null, hdUrl, hd ? hd.source_name : '') + '</td>';
-    html += '<td>' + loc.rpp.toFixed(3) + '</td>';
+
+    // Walmart
+    html += '<td class="wage-cell ' + cellClass(wm ? wm.hourly_avg : null, blsMedian) + '">';
+    if (wm) { html += fmtWageWithDist(wm.hourly_avg, wmUrl, wm.source_name, dist.walmart || 0); }
+    else { html += '&mdash;'; }
+    html += '</td>';
+
+    // Home Depot
+    html += '<td class="wage-cell ' + cellClass(hd ? hd.hourly_avg : null, blsMedian) + '">';
+    if (hd) { html += fmtWageWithDist(hd.hourly_avg, hdUrl, hd.source_name, dist.home_depot || 0); }
+    else { html += '&mdash;'; }
+    html += '</td>';
+
+    // Costco
+    html += '<td class="wage-cell ' + cellClass(co ? co.hourly_avg : null, blsMedian) + '">';
+    if (co) { html += fmtWageWithDist(co.hourly_avg, coUrl, co.source_name, dist.costco || 0); }
+    else { html += '&mdash;'; }
+    html += '</td>';
+
+    // Starbucks
+    html += '<td class="wage-cell ' + cellClass(sb ? sb.hourly_avg : null, blsMedian) + '">';
+    if (sb) { html += fmtWageWithDist(sb.hourly_avg, sbUrl, sb.source_name, dist.starbucks || 0); }
+    else { html += '&mdash;'; }
+    html += '</td>';
+
+    html += '<td><strong>$' + loc.blended_wage.toFixed(2) + '</strong></td>';
     html += '</tr>';
   });
   tbody.innerHTML = html;
@@ -514,13 +615,13 @@ function sortTable(col) {
     sortState.asc = !sortState.asc;
   } else {
     sortState.col = col;
-    sortState.asc = true;
+    sortState.asc = (col === 'yard' || col === 'city' || col === 'state');
   }
-  document.querySelectorAll('#locTable th').forEach(th => {
+  document.querySelectorAll('#locTable th').forEach(function(th) {
     th.classList.remove('sorted');
     th.querySelector('.sort-arrow').textContent = '▲';
   });
-  const th = document.querySelector('#locTable th[data-col="' + col + '"]');
+  var th = document.querySelector('#locTable th[data-col="' + col + '"]');
   if (th) {
     th.classList.add('sorted');
     th.querySelector('.sort-arrow').textContent = sortState.asc ? '▲' : '▼';
@@ -535,25 +636,26 @@ function switchRole() {
 }
 
 function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
   document.getElementById('tab-' + tab).classList.add('active');
   document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
 }
 
-// Charts
 function buildCharts() {
-  const top15 = DATA.state_summary.slice(0, 15);
-  const labels = top15.map(s => s.state);
+  var top15 = DATA.state_summary.slice(0, 15);
+  var labels = top15.map(function(s) { return s.state; });
 
   new Chart(document.getElementById('chartOutdoor'), {
     type: 'bar',
     data: {
       labels: labels,
       datasets: [
-        { label: 'BLS Median', data: top15.map(s => s.bls_outdoor_median), backgroundColor: '#1a365d' },
-        { label: 'Walmart Avg', data: top15.map(s => s.walmart_outdoor_avg), backgroundColor: '#2b6cb0' },
-        { label: 'Home Depot Avg', data: top15.map(s => s.homedepot_outdoor_avg), backgroundColor: '#ed8936' },
+        { label: 'BLS Median', data: top15.map(function(s) { return s.bls_outdoor_median; }), backgroundColor: '#1a365d' },
+        { label: 'Walmart', data: top15.map(function(s) { return s.walmart_outdoor; }), backgroundColor: '#2b6cb0' },
+        { label: 'Home Depot', data: top15.map(function(s) { return s.homedepot_outdoor; }), backgroundColor: '#ed8936' },
+        { label: 'Costco', data: top15.map(function(s) { return s.costco_outdoor; }), backgroundColor: '#38a169' },
+        { label: 'Starbucks', data: top15.map(function(s) { return s.starbucks_outdoor; }), backgroundColor: '#805ad5' },
       ]
     },
     options: {
@@ -568,9 +670,11 @@ function buildCharts() {
     data: {
       labels: labels,
       datasets: [
-        { label: 'BLS Median', data: top15.map(s => s.bls_indoor_median), backgroundColor: '#1a365d' },
-        { label: 'Walmart Avg', data: top15.map(s => s.walmart_indoor_avg), backgroundColor: '#2b6cb0' },
-        { label: 'Home Depot Avg', data: top15.map(s => s.homedepot_indoor_avg), backgroundColor: '#ed8936' },
+        { label: 'BLS Median', data: top15.map(function(s) { return s.bls_indoor_median; }), backgroundColor: '#1a365d' },
+        { label: 'Walmart', data: top15.map(function(s) { return s.walmart_indoor; }), backgroundColor: '#2b6cb0' },
+        { label: 'Home Depot', data: top15.map(function(s) { return s.homedepot_indoor; }), backgroundColor: '#ed8936' },
+        { label: 'Costco', data: top15.map(function(s) { return s.costco_indoor; }), backgroundColor: '#38a169' },
+        { label: 'Starbucks', data: top15.map(function(s) { return s.starbucks_indoor; }), backgroundColor: '#805ad5' },
       ]
     },
     options: {
@@ -581,8 +685,7 @@ function buildCharts() {
   });
 }
 
-// Init
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   renderTable();
   buildCharts();
 });
