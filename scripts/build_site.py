@@ -541,7 +541,7 @@ function empCell(emp, empKey, loc, role) {
 function computeStats(locs, field, role) {
   var vals = [];
   locs.forEach(function(l) {
-    var v = (field === 'blended') ? l.blended_wage : getVal(l, field, role);
+    var v = getVal(l, field, role);
     if (v != null) vals.push(v);
   });
   if (vals.length === 0) return null;
