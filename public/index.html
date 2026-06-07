@@ -98,6 +98,11 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
 .card .value a { color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--gray-500); }
 .card .value a:hover { border-bottom-color: var(--navy); }
 .card .detail { font-size: 12px; color: var(--slate); margin-top: 4px; }
+.card-wages { margin: 4px 0; }
+.card-wage-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+.card-role { font-size: 12px; color: var(--gray-500); min-width: 52px; }
+.card-amt { font-size: 22px; font-weight: 700; color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--gray-500); }
+.card-amt:hover { border-bottom-color: var(--navy); }
 
 .section { margin-bottom: 40px; }
 .section-title {
@@ -310,23 +315,35 @@ footer a { color: var(--blue-600); }
     </div>
     <div class="card">
       <div class="label">Walmart</div>
-      <div class="value"><a href="https://www.indeed.com/cmp/Walmart/salaries/Stocker" target="_blank">$16.53</a>/hr</div>
-      <div class="detail">Stocking, national avg</div>
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Walmart/salaries/Stocker" target="_blank">$16.53/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Walmart/salaries/Cashier" target="_blank">$14.94/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Home Depot</div>
-      <div class="value"><a href="https://www.indeed.com/cmp/The-Home-Depot/salaries/Lot-Attendant" target="_blank">$17.02</a>/hr</div>
-      <div class="detail">Lot Associate, national avg</div>
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/The-Home-Depot/salaries/Lot-Attendant" target="_blank">$17.02/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/The-Home-Depot/salaries/Cashier" target="_blank">$15.64/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Costco</div>
-      <div class="value"><a href="https://www.indeed.com/cmp/Costco-Wholesale/salaries/Stocker" target="_blank">$20.39</a>/hr</div>
-      <div class="detail">Cart Attendant, national avg</div>
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Costco-Wholesale/salaries/Stocker" target="_blank">$20.39/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Costco-Wholesale/salaries/Cashier" target="_blank">$20.39/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
     <div class="card">
       <div class="label">Starbucks</div>
-      <div class="value"><a href="https://www.indeed.com/cmp/Starbucks/salaries/Barista" target="_blank">$16.55</a>/hr</div>
-      <div class="detail">Barista, national avg</div>
+      <div class="card-wages">
+        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Starbucks/salaries/Barista" target="_blank">$16.55/hr</a></div>
+        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="https://www.indeed.com/cmp/Starbucks/salaries/Barista" target="_blank">$16.55/hr</a></div>
+      </div>
+      <div class="detail">National avg</div>
     </div>
   </div>
 
@@ -1002,6 +1019,35 @@ function fmtWageWithDist(val, url, title, distMi) {
     '<span class="dist-tip">Nearest: ' + distMi.toFixed(1) + ' mi</span>';
 }
 
+function blendedCell(loc, role) {
+  var val = loc['blended_wage_' + role];
+  var dist = loc.nearest_distance_mi || {};
+  var emps = loc.employers || {};
+  var keys = [
+    {name: 'WMT', short: 'walmart', full: 'walmart_' + role},
+    {name: 'HD', short: 'home_depot', full: 'home_depot_' + role},
+    {name: 'COST', short: 'costco', full: 'costco_' + role},
+    {name: 'SBUX', short: 'starbucks', full: 'starbucks_' + role}
+  ];
+  var parts = [];
+  var totalW = 0;
+  keys.forEach(function(k) {
+    if (isInRange(loc, k.short) && emps[k.full]) {
+      var w = 1.0 / dist[k.short];
+      parts.push({name: k.name, wage: emps[k.full].hourly_avg, weight: w});
+      totalW += w;
+    }
+  });
+  var tip = '';
+  if (totalW > 0) {
+    tip = parts.map(function(p) {
+      return Math.round(p.weight / totalW * 100) + '% ' + p.name + ' ($' + p.wage.toFixed(2) + ')';
+    }).join(' + ');
+  }
+  return '<td class="wage-cell"><strong>$' + val.toFixed(2) + '</strong>' +
+    (tip ? '<span class="dist-tip">' + tip + '</span>' : '') + '</td>';
+}
+
 function empCell(emp, empKey, loc, role) {
   var e = loc.employers && loc.employers[empKey + '_' + role];
   var dist = loc.nearest_distance_mi || {};
@@ -1084,7 +1130,7 @@ function renderTable() {
     html += empCell('Home Depot', 'home_depot', loc, role);
     html += empCell('Costco', 'costco', loc, role);
     html += empCell('Starbucks', 'starbucks', loc, role);
-    html += '<td><strong>$' + loc['blended_wage_' + role].toFixed(2) + '</strong></td>';
+    html += blendedCell(loc, role);
     html += '</tr>';
 
     var nextLoc = locs[idx + 1];
