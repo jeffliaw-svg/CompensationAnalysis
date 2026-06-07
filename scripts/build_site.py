@@ -165,6 +165,7 @@ th.sorted .sort-arrow { opacity: 1; }
 td { padding: 7px 10px; border-bottom: 1px solid var(--gray-200); }
 tr:hover td { background: var(--gray-100); }
 
+.yard-addr { font-size: 11px; color: var(--gray-500); font-weight: 400; white-space: nowrap; }
 td a.wage-link {
   color: var(--blue-700);
   text-decoration: none;
@@ -403,8 +404,7 @@ footer a { color: var(--blue-600); }
             <tr>
               <th data-col="quartile" onclick="sortTable('quartile')">Q <span class="sort-arrow">&#9650;</span></th>
               <th data-col="yard" onclick="sortTable('yard')">Yard Name <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="city" onclick="sortTable('city')">City <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="state" onclick="sortTable('state')">State <span class="sort-arrow">&#9650;</span></th>
+              <th data-col="city" onclick="sortTable('city')">City, State <span class="sort-arrow">&#9650;</span></th>
               <th data-col="walmart" onclick="sortTable('walmart')">Walmart <span class="sort-arrow">&#9650;</span></th>
               <th data-col="homedepot" onclick="sortTable('homedepot')">Home Depot <span class="sort-arrow">&#9650;</span></th>
               <th data-col="costco" onclick="sortTable('costco')">Costco <span class="sort-arrow">&#9650;</span></th>
@@ -533,8 +533,7 @@ function getVal(loc, field, role) {
   switch(field) {
     case 'quartile': return loc.quartile;
     case 'yard': return loc.yard;
-    case 'city': return loc.city;
-    case 'state': return loc.state;
+    case 'city': return loc.city + ', ' + loc.state;
     case 'walmart': return (wm && isInRange(loc, 'walmart')) ? wm.hourly_avg : null;
     case 'homedepot': return (hd && isInRange(loc, 'home_depot')) ? hd.hourly_avg : null;
     case 'costco': return (co && isInRange(loc, 'costco')) ? co.hourly_avg : null;
@@ -571,7 +570,7 @@ function blendedCell(loc, role) {
   var tip = '';
   if (totalW > 0) {
     tip = parts.map(function(p) {
-      return Math.round(p.weight / totalW * 100) + '% ' + p.name + ' ($' + p.wage.toFixed(2) + ')';
+      return Math.round(p.weight / totalW * 100) + '% ' + p.name;
     }).join(' + ');
   }
   return '<td class="wage-cell"><strong>$' + val.toFixed(2) + '</strong>' +
@@ -642,7 +641,7 @@ function renderTable() {
 
   var html = '';
   var qGroups = {};
-  var cols = 9;
+  var cols = 8;
 
   locs.forEach(function(loc, idx) {
     if (!qGroups[loc.quartile]) qGroups[loc.quartile] = [];
@@ -653,9 +652,8 @@ function renderTable() {
 
     html += '<tr' + (isFirst ? ' class="q-first"' : '') + '>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
-    html += '<td title="' + loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip + '"><strong>' + loc.yard + '</strong></td>';
-    html += '<td>' + loc.city + '</td>';
-    html += '<td>' + loc.state + '</td>';
+    html += '<td><strong>' + loc.yard + '</strong><div class="yard-addr">' + loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip + '</div></td>';
+    html += '<td>' + loc.city + ', ' + loc.state + '</td>';
     html += empCell('Walmart', 'walmart', loc, role);
     html += empCell('Home Depot', 'home_depot', loc, role);
     html += empCell('Costco', 'costco', loc, role);
@@ -669,7 +667,7 @@ function renderTable() {
       // Mean row
       html += '<tr class="subtotal-row mean-row">';
       html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
-      html += '<td colspan="3"><strong>Mean</strong> (' + group.length + ' locations)</td>';
+      html += '<td colspan="2"><strong>Mean</strong> (' + group.length + ' locations)</td>';
       html += '<td>' + statCell(group, 'walmart', role) + '</td>';
       html += '<td>' + statCell(group, 'homedepot', role) + '</td>';
       html += '<td>' + statCell(group, 'costco', role) + '</td>';
@@ -679,7 +677,7 @@ function renderTable() {
       // Median row
       html += '<tr class="subtotal-row median-row">';
       html += '<td></td>';
-      html += '<td colspan="3"><strong>Median</strong></td>';
+      html += '<td colspan="2"><strong>Median</strong></td>';
       html += '<td>' + statCellMed(group, 'walmart', role) + '</td>';
       html += '<td>' + statCellMed(group, 'homedepot', role) + '</td>';
       html += '<td>' + statCellMed(group, 'costco', role) + '</td>';
