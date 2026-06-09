@@ -143,6 +143,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.61,
       "blended_wage_indoor": 18.73,
       "quartile": 1
@@ -256,6 +262,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.6,
       "blended_wage_indoor": 18.7,
@@ -371,6 +383,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.36,
       "blended_wage_indoor": 18.45,
       "quartile": 1
@@ -484,6 +502,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.33,
       "blended_wage_indoor": 18.25,
@@ -599,6 +623,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.31,
       "blended_wage_indoor": 18.32,
       "quartile": 1
@@ -712,6 +742,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.31,
       "blended_wage_indoor": 18.37,
@@ -827,6 +863,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.3,
       "blended_wage_indoor": 18.43,
       "quartile": 1
@@ -940,6 +982,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.29,
       "blended_wage_indoor": 18.41,
@@ -1055,6 +1103,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.28,
       "blended_wage_indoor": 18.5,
       "quartile": 1
@@ -1168,6 +1222,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.28,
       "blended_wage_indoor": 18.49,
@@ -1283,6 +1343,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.28,
       "blended_wage_indoor": 18.34,
       "quartile": 1
@@ -1396,6 +1462,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.27,
       "blended_wage_indoor": 18.38,
@@ -1511,6 +1583,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.27,
       "blended_wage_indoor": 18.32,
       "quartile": 1
@@ -1624,6 +1702,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.26,
       "blended_wage_indoor": 18.26,
@@ -1739,6 +1823,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.25,
       "blended_wage_indoor": 18.35,
       "quartile": 1
@@ -1852,6 +1942,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.23,
       "blended_wage_indoor": 18.41,
@@ -1967,6 +2063,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.22,
       "blended_wage_indoor": 18.33,
       "quartile": 1
@@ -2080,6 +2182,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.21,
       "blended_wage_indoor": 18.31,
@@ -2195,6 +2303,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.21,
       "blended_wage_indoor": 18.22,
       "quartile": 1
@@ -2308,6 +2422,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.21,
       "blended_wage_indoor": 18.32,
@@ -2423,6 +2543,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.2,
       "blended_wage_indoor": 18.36,
       "quartile": 1
@@ -2536,6 +2662,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.19,
       "blended_wage_indoor": 18.2,
@@ -2651,6 +2783,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.18,
       "blended_wage_indoor": 18.38,
       "quartile": 1
@@ -2764,6 +2902,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.17,
       "blended_wage_indoor": 18.34,
@@ -2879,6 +3023,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.13,
       "blended_wage_indoor": 18.14,
       "quartile": 1
@@ -2992,6 +3142,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.12,
       "blended_wage_indoor": 18.32,
@@ -3107,6 +3263,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 19.11,
       "blended_wage_indoor": 18.27,
       "quartile": 1
@@ -3220,6 +3382,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 19.04,
       "blended_wage_indoor": 18.15,
@@ -3335,6 +3503,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.97,
       "blended_wage_indoor": 17.97,
       "quartile": 1
@@ -3448,6 +3622,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.96,
       "blended_wage_indoor": 18.06,
@@ -3563,6 +3743,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.93,
       "blended_wage_indoor": 17.73,
       "quartile": 1
@@ -3676,6 +3862,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.93,
       "blended_wage_indoor": 17.98,
@@ -3791,6 +3983,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.93,
       "blended_wage_indoor": 17.98,
       "quartile": 1
@@ -3904,6 +4102,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.89,
       "blended_wage_indoor": 17.99,
@@ -4019,6 +4223,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.81,
       "blended_wage_indoor": 18.0,
       "quartile": 1
@@ -4132,6 +4342,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.81,
       "blended_wage_indoor": 17.95,
@@ -4247,6 +4463,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.65,
       "blended_wage_indoor": 17.54,
       "quartile": 1
@@ -4360,6 +4582,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.65,
       "blended_wage_indoor": 17.64,
@@ -4475,6 +4703,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.62,
       "blended_wage_indoor": 17.79,
       "quartile": 1
@@ -4588,6 +4822,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.59,
       "blended_wage_indoor": 17.68,
@@ -4703,6 +4943,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.57,
       "blended_wage_indoor": 17.7,
       "quartile": 1
@@ -4816,6 +5062,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 18.26,
       "blended_wage_indoor": 17.46,
@@ -4931,6 +5183,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 18.21,
       "blended_wage_indoor": 17.47,
       "quartile": 1
@@ -5044,6 +5302,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.9,
       "blended_wage_indoor": 17.16,
@@ -5159,6 +5423,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.9,
       "blended_wage_indoor": 17.17,
       "quartile": 1
@@ -5272,6 +5542,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.88,
       "blended_wage_indoor": 16.96,
@@ -5387,6 +5663,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.87,
       "blended_wage_indoor": 17.09,
       "quartile": 1
@@ -5500,6 +5782,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.83,
       "blended_wage_indoor": 16.96,
@@ -5615,6 +5903,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.82,
       "blended_wage_indoor": 16.95,
       "quartile": 1
@@ -5728,6 +6022,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.79,
       "blended_wage_indoor": 16.82,
@@ -5843,6 +6143,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.77,
       "blended_wage_indoor": 16.94,
       "quartile": 2
@@ -5956,6 +6262,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.76,
       "blended_wage_indoor": 16.94,
@@ -6071,6 +6383,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.75,
       "blended_wage_indoor": 16.94,
       "quartile": 2
@@ -6184,6 +6502,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.69,
       "blended_wage_indoor": 16.86,
@@ -6299,6 +6623,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.69,
       "blended_wage_indoor": 16.83,
       "quartile": 2
@@ -6412,6 +6742,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.51,
       "blended_wage_indoor": 16.64,
@@ -6527,6 +6863,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.7,
       "quartile": 2
@@ -6640,6 +6982,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.54,
@@ -6755,6 +7103,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.73,
       "quartile": 2
@@ -6868,6 +7222,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.65,
@@ -6983,6 +7343,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.67,
       "quartile": 2
@@ -7096,6 +7462,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.45,
       "blended_wage_indoor": 16.43,
@@ -7211,6 +7583,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.44,
       "blended_wage_indoor": 16.69,
       "quartile": 2
@@ -7324,6 +7702,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.43,
       "blended_wage_indoor": 16.69,
@@ -7439,6 +7823,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.43,
       "blended_wage_indoor": 16.69,
       "quartile": 2
@@ -7552,6 +7942,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.43,
       "blended_wage_indoor": 16.76,
@@ -7667,6 +8063,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.42,
       "blended_wage_indoor": 16.57,
       "quartile": 2
@@ -7780,6 +8182,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.41,
       "blended_wage_indoor": 16.59,
@@ -7895,6 +8303,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.39,
       "blended_wage_indoor": 16.55,
       "quartile": 2
@@ -8008,6 +8422,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.36,
       "blended_wage_indoor": 16.62,
@@ -8123,6 +8543,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.34,
       "blended_wage_indoor": 16.5,
       "quartile": 2
@@ -8236,6 +8662,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.34,
       "blended_wage_indoor": 16.48,
@@ -8351,6 +8783,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.28,
       "blended_wage_indoor": 16.15,
       "quartile": 2
@@ -8464,6 +8902,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.28,
       "blended_wage_indoor": 16.44,
@@ -8579,6 +9023,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.26,
       "blended_wage_indoor": 16.5,
       "quartile": 2
@@ -8692,6 +9142,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.25,
       "blended_wage_indoor": 16.48,
@@ -8807,6 +9263,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.22,
       "blended_wage_indoor": 16.44,
       "quartile": 2
@@ -8920,6 +9382,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.21,
       "blended_wage_indoor": 16.48,
@@ -9035,6 +9503,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.2,
       "blended_wage_indoor": 16.47,
       "quartile": 2
@@ -9148,6 +9622,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.18,
       "blended_wage_indoor": 16.45,
@@ -9263,6 +9743,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.16,
       "blended_wage_indoor": 16.03,
       "quartile": 2
@@ -9376,6 +9862,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.16,
       "blended_wage_indoor": 16.47,
@@ -9491,6 +9983,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.14,
       "blended_wage_indoor": 16.32,
       "quartile": 2
@@ -9604,6 +10102,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.12,
       "blended_wage_indoor": 16.3,
@@ -9719,6 +10223,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.11,
       "blended_wage_indoor": 16.12,
       "quartile": 2
@@ -9832,6 +10342,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.09,
       "blended_wage_indoor": 16.27,
@@ -9947,6 +10463,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.09,
       "blended_wage_indoor": 16.37,
       "quartile": 2
@@ -10060,6 +10582,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.07,
       "blended_wage_indoor": 16.24,
@@ -10175,6 +10703,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.05,
       "blended_wage_indoor": 16.29,
       "quartile": 2
@@ -10288,6 +10822,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.04,
       "blended_wage_indoor": 16.3,
@@ -10403,6 +10943,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 17.04,
       "blended_wage_indoor": 16.2,
       "quartile": 2
@@ -10516,6 +11062,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 17.01,
       "blended_wage_indoor": 16.19,
@@ -10631,6 +11183,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.99,
       "blended_wage_indoor": 16.19,
       "quartile": 2
@@ -10744,6 +11302,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.98,
       "blended_wage_indoor": 16.3,
@@ -10859,6 +11423,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.98,
       "blended_wage_indoor": 16.22,
       "quartile": 2
@@ -10972,6 +11542,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.98,
       "blended_wage_indoor": 16.11,
@@ -11087,6 +11663,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.98,
       "blended_wage_indoor": 16.29,
       "quartile": 2
@@ -11200,6 +11782,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.96,
       "blended_wage_indoor": 16.21,
@@ -11315,6 +11903,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.96,
       "blended_wage_indoor": 16.17,
       "quartile": 2
@@ -11428,6 +12022,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.93,
       "blended_wage_indoor": 16.16,
@@ -11543,6 +12143,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.92,
       "blended_wage_indoor": 16.2,
       "quartile": 3
@@ -11656,6 +12262,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.91,
       "blended_wage_indoor": 16.05,
@@ -11771,6 +12383,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.91,
       "blended_wage_indoor": 16.05,
       "quartile": 3
@@ -11884,6 +12502,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.88,
       "blended_wage_indoor": 16.14,
@@ -11999,6 +12623,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.87,
       "blended_wage_indoor": 16.12,
       "quartile": 3
@@ -12112,6 +12742,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.85,
       "blended_wage_indoor": 15.99,
@@ -12227,6 +12863,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.85,
       "blended_wage_indoor": 16.13,
       "quartile": 3
@@ -12340,6 +12982,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.84,
       "blended_wage_indoor": 16.08,
@@ -12455,6 +13103,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.78,
       "blended_wage_indoor": 15.77,
       "quartile": 3
@@ -12568,6 +13222,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.63,
       "blended_wage_indoor": 15.93,
@@ -12683,6 +13343,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.59,
       "blended_wage_indoor": 15.56,
       "quartile": 3
@@ -12796,6 +13462,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.59,
       "blended_wage_indoor": 15.6,
@@ -12911,6 +13583,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.58,
       "blended_wage_indoor": 15.77,
       "quartile": 3
@@ -13024,6 +13702,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.58,
       "blended_wage_indoor": 15.59,
@@ -13139,6 +13823,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.58,
       "blended_wage_indoor": 15.7,
       "quartile": 3
@@ -13252,6 +13942,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.57,
       "blended_wage_indoor": 15.86,
@@ -13367,6 +14063,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.53,
       "blended_wage_indoor": 15.76,
       "quartile": 3
@@ -13480,6 +14182,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.5,
       "blended_wage_indoor": 15.71,
@@ -13595,6 +14303,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.49,
       "blended_wage_indoor": 15.73,
       "quartile": 3
@@ -13708,6 +14422,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.49,
       "blended_wage_indoor": 15.7,
@@ -13823,6 +14543,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.46,
       "blended_wage_indoor": 15.71,
       "quartile": 3
@@ -13936,6 +14662,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.46,
       "blended_wage_indoor": 15.75,
@@ -14051,6 +14783,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.46,
       "blended_wage_indoor": 15.67,
       "quartile": 3
@@ -14164,6 +14902,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.46,
       "blended_wage_indoor": 15.72,
@@ -14279,6 +15023,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.45,
       "blended_wage_indoor": 15.74,
       "quartile": 3
@@ -14392,6 +15142,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.45,
       "blended_wage_indoor": 15.72,
@@ -14507,6 +15263,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.44,
       "blended_wage_indoor": 15.75,
       "quartile": 3
@@ -14620,6 +15382,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.44,
       "blended_wage_indoor": 15.73,
@@ -14735,6 +15503,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.39,
       "blended_wage_indoor": 15.7,
       "quartile": 3
@@ -14848,6 +15622,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.38,
       "blended_wage_indoor": 15.7,
@@ -14963,6 +15743,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.37,
       "blended_wage_indoor": 15.66,
       "quartile": 3
@@ -15076,6 +15862,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.37,
       "blended_wage_indoor": 15.8,
@@ -15191,6 +15983,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.35,
       "blended_wage_indoor": 15.59,
       "quartile": 3
@@ -15304,6 +16102,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.33,
       "blended_wage_indoor": 15.69,
@@ -15419,6 +16223,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.32,
       "blended_wage_indoor": 15.58,
       "quartile": 3
@@ -15532,6 +16342,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.32,
       "blended_wage_indoor": 15.64,
@@ -15647,6 +16463,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.31,
       "blended_wage_indoor": 15.64,
       "quartile": 3
@@ -15760,6 +16582,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.3,
       "blended_wage_indoor": 15.61,
@@ -15875,6 +16703,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.3,
       "blended_wage_indoor": 15.59,
       "quartile": 3
@@ -15988,6 +16822,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.3,
       "blended_wage_indoor": 15.59,
@@ -16103,6 +16943,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.28,
       "blended_wage_indoor": 15.47,
       "quartile": 3
@@ -16216,6 +17062,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.27,
       "blended_wage_indoor": 15.66,
@@ -16331,6 +17183,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.24,
       "blended_wage_indoor": 15.65,
       "quartile": 3
@@ -16444,6 +17302,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.2,
       "blended_wage_indoor": 15.54,
@@ -16559,6 +17423,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.18,
       "blended_wage_indoor": 15.65,
       "quartile": 3
@@ -16672,6 +17542,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.18,
       "blended_wage_indoor": 15.57,
@@ -16787,6 +17663,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.18,
       "blended_wage_indoor": 15.5,
       "quartile": 3
@@ -16900,6 +17782,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.16,
       "blended_wage_indoor": 15.54,
@@ -17015,6 +17903,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.15,
       "blended_wage_indoor": 15.56,
       "quartile": 4
@@ -17128,6 +18022,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.13,
       "blended_wage_indoor": 15.46,
@@ -17243,6 +18143,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.13,
       "blended_wage_indoor": 15.43,
       "quartile": 4
@@ -17356,6 +18262,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.09,
       "blended_wage_indoor": 15.16,
@@ -17471,6 +18383,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.09,
       "blended_wage_indoor": 15.17,
       "quartile": 4
@@ -17584,6 +18502,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.09,
       "blended_wage_indoor": 15.53,
@@ -17699,6 +18623,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.08,
       "blended_wage_indoor": 15.11,
       "quartile": 4
@@ -17812,6 +18742,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.08,
       "blended_wage_indoor": 15.44,
@@ -17927,6 +18863,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 16.07,
       "blended_wage_indoor": 15.25,
       "quartile": 4
@@ -18040,6 +18982,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 16.0,
       "blended_wage_indoor": 15.39,
@@ -18155,6 +19103,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.99,
       "blended_wage_indoor": 15.51,
       "quartile": 4
@@ -18268,6 +19222,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.97,
       "blended_wage_indoor": 15.39,
@@ -18383,6 +19343,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.97,
       "blended_wage_indoor": 15.5,
       "quartile": 4
@@ -18496,6 +19462,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.97,
       "blended_wage_indoor": 15.46,
@@ -18611,6 +19583,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.94,
       "blended_wage_indoor": 15.45,
       "quartile": 4
@@ -18724,6 +19702,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.91,
       "blended_wage_indoor": 15.05,
@@ -18839,6 +19823,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.91,
       "blended_wage_indoor": 15.36,
       "quartile": 4
@@ -18952,6 +19942,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.9,
       "blended_wage_indoor": 15.08,
@@ -19067,6 +20063,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.81,
       "blended_wage_indoor": 15.08,
       "quartile": 4
@@ -19180,6 +20182,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.81,
       "blended_wage_indoor": 15.03,
@@ -19295,6 +20303,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.81,
       "blended_wage_indoor": 15.12,
       "quartile": 4
@@ -19408,6 +20422,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.79,
       "blended_wage_indoor": 15.2,
@@ -19523,6 +20543,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.77,
       "blended_wage_indoor": 15.28,
       "quartile": 4
@@ -19636,6 +20662,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.75,
       "blended_wage_indoor": 15.38,
@@ -19751,6 +20783,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.74,
       "blended_wage_indoor": 14.87,
       "quartile": 4
@@ -19864,6 +20902,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.73,
       "blended_wage_indoor": 15.24,
@@ -19979,6 +21023,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.73,
       "blended_wage_indoor": 14.88,
       "quartile": 4
@@ -20092,6 +21142,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.73,
       "blended_wage_indoor": 14.84,
@@ -20207,6 +21263,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.65,
       "blended_wage_indoor": 15.33,
       "quartile": 4
@@ -20320,6 +21382,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.65,
       "blended_wage_indoor": 15.3,
@@ -20435,6 +21503,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.63,
       "blended_wage_indoor": 15.19,
       "quartile": 4
@@ -20548,6 +21622,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.63,
       "blended_wage_indoor": 15.24,
@@ -20663,6 +21743,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.57,
       "blended_wage_indoor": 15.27,
       "quartile": 4
@@ -20776,6 +21862,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.55,
       "blended_wage_indoor": 14.89,
@@ -20891,6 +21983,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.54,
       "blended_wage_indoor": 15.29,
       "quartile": 4
@@ -21004,6 +22102,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.52,
       "blended_wage_indoor": 15.23,
@@ -21119,6 +22223,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.5,
       "blended_wage_indoor": 15.15,
       "quartile": 4
@@ -21232,6 +22342,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.5,
       "blended_wage_indoor": 15.17,
@@ -21347,6 +22463,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.48,
       "blended_wage_indoor": 15.2,
       "quartile": 4
@@ -21460,6 +22582,12 @@
         "home_depot": true,
         "costco": true,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.45,
       "blended_wage_indoor": 15.2,
@@ -21575,6 +22703,12 @@
         "costco": true,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.42,
       "blended_wage_indoor": 15.19,
       "quartile": 4
@@ -21688,6 +22822,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.39,
       "blended_wage_indoor": 14.85,
@@ -21803,6 +22943,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.22,
       "blended_wage_indoor": 14.68,
       "quartile": 4
@@ -21916,6 +23062,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.13,
       "blended_wage_indoor": 14.57,
@@ -22031,6 +23183,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 15.07,
       "blended_wage_indoor": 14.68,
       "quartile": 4
@@ -22144,6 +23302,12 @@
         "home_depot": true,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 15.07,
       "blended_wage_indoor": 14.61,
@@ -22259,6 +23423,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 14.97,
       "blended_wage_indoor": 14.51,
       "quartile": 4
@@ -22373,6 +23543,12 @@
         "costco": false,
         "starbucks": true
       },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
+      },
       "blended_wage_outdoor": 14.92,
       "blended_wage_indoor": 14.61,
       "quartile": 4
@@ -22486,6 +23662,12 @@
         "home_depot": false,
         "costco": false,
         "starbucks": true
+      },
+      "competitor_addresses": {
+        "walmart": null,
+        "home_depot": null,
+        "costco": null,
+        "starbucks": null
       },
       "blended_wage_outdoor": 14.88,
       "blended_wage_indoor": 14.49,
