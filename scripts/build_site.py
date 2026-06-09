@@ -165,6 +165,8 @@ th.sorted .sort-arrow { opacity: 1; }
 td { padding: 7px 10px; border-bottom: 1px solid var(--gray-200); }
 tr:hover td { background: var(--gray-100); }
 
+.yard-link { color: var(--navy); text-decoration: none; }
+.yard-link:hover { color: var(--blue-600); text-decoration: underline; }
 .yard-addr { font-size: 11px; color: var(--gray-500); font-weight: 400; white-space: nowrap; }
 td a.wage-link {
   color: var(--blue-700);
@@ -654,7 +656,9 @@ function renderTable() {
 
     html += '<tr' + (isFirst ? ' class="q-first"' : '') + '>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
-    html += '<td><strong>' + loc.yard + '</strong><div class="yard-addr">' + loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip + '</div></td>';
+    var fullAddr = loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip;
+    var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(fullAddr);
+    html += '<td><a href="' + mapsUrl + '" target="_blank" class="yard-link"><strong>' + loc.yard + '</strong></a><div class="yard-addr">' + fullAddr + '</div></td>';
     html += '<td>' + loc.city + ', ' + loc.state + '</td>';
     html += empCell('Walmart', 'walmart', loc, role);
     html += empCell('Home Depot', 'home_depot', loc, role);
