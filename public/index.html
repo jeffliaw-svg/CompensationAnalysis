@@ -235,24 +235,17 @@ th.col-chk:hover { background: var(--navy); }
 td.col-chk { text-align: center; }
 td.col-chk input[type="checkbox"] { cursor: pointer; }
 
-.selected-bar {
-  background: var(--navy);
+tr.selected-row { display: none; }
+tr.selected-row.visible { display: table-row; }
+tr.selected-row td {
+  background: var(--navy-light) !important;
   color: var(--white);
-  border-radius: 8px;
-  padding: 12px 20px;
-  margin-bottom: 12px;
-  display: none;
-  align-items: center;
-  gap: 24px;
-  font-size: 14px;
-  flex-wrap: wrap;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-bottom: 3px solid var(--navy);
 }
-.selected-bar.visible { display: flex; }
-.selected-bar .sel-label { font-weight: 700; min-width: 90px; }
-.selected-bar .sel-stat { display: flex; gap: 16px; flex-wrap: wrap; }
-.selected-bar .sel-item { font-size: 13px; }
-.selected-bar .sel-item .sel-emp { opacity: 0.7; margin-right: 4px; }
-.selected-bar .sel-item .sel-val { font-weight: 700; }
+tr.selected-row td a { color: var(--white); }
 
 .methodology {
   background: var(--white);
@@ -457,10 +450,6 @@ footer a { color: var(--blue-600); }
         <span class="legend-item"><span class="q-badge q3">Q3</span></span>
         <span class="legend-item"><span class="q-badge q4">Q4</span> Lowest</span>
         <span style="margin-left:8px;color:var(--gray-500)">Hover wage for nearest store distance &middot; Hover yard name for address</span>
-      </div>
-      <div class="selected-bar" id="selectedBar">
-        <span class="sel-label" id="selLabel">0 selected</span>
-        <div class="sel-stat" id="selStats"></div>
       </div>
       <div class="row-count" id="rowCount"></div>
       <div class="table-wrap">
@@ -1157,6 +1146,16 @@ function renderTable() {
   }
 
   var html = '';
+  html += '<tr class="selected-row" id="selectedRow">';
+  html += '<td class="col-chk"></td>';
+  html += '<td></td>';
+  html += '<td colspan="2"><span class="sel-count">0 selected</span></td>';
+  html += '<td class="col-wage" data-sel="walmart"></td>';
+  html += '<td class="col-wage" data-sel="homedepot"></td>';
+  html += '<td class="col-wage" data-sel="costco"></td>';
+  html += '<td class="col-wage" data-sel="starbucks"></td>';
+  html += '<td class="col-wage" data-sel="blended"></td>';
+  html += '</tr>';
   var qGroups = {};
   var cols = 9;
 
@@ -1220,6 +1219,7 @@ function renderTable() {
   tbody.innerHTML = html;
   document.getElementById('rowCount').textContent = locs.length + ' of ' + DATA.locations.length + ' locations';
   updateSelectAllState();
+  updateSelection();
 }
 
 function toggleSelect(cb) {
@@ -1251,31 +1251,24 @@ function updateSelectAllState() {
 
 function updateSelection() {
   var role = ROLE.current;
-  var bar = document.getElementById('selectedBar');
-  var label = document.getElementById('selLabel');
-  var stats = document.getElementById('selStats');
+  var row = document.getElementById('selectedRow');
+  if (!row) return;
   var zips = Object.keys(selectedZips);
   if (zips.length === 0) {
-    bar.classList.remove('visible');
+    row.classList.remove('visible');
     return;
   }
   var selLocs = DATA.locations.filter(function(l) { return selectedZips[l.zip]; });
-  label.textContent = selLocs.length + ' selected';
-  var fields = [
-    {key: 'walmart', label: 'WMT'},
-    {key: 'homedepot', label: 'HD'},
-    {key: 'costco', label: 'COST'},
-    {key: 'starbucks', label: 'SBUX'},
-    {key: 'blended', label: 'Blended'}
-  ];
-  var html = '';
-  fields.forEach(function(f) {
-    var s = computeStats(selLocs, f.key, role);
-    var val = s ? '$' + s.mean.toFixed(2) : '—';
-    html += '<span class="sel-item"><span class="sel-emp">' + f.label + ':</span><span class="sel-val">' + val + '</span></span>';
+  var fields = ['walmart', 'homedepot', 'costco', 'starbucks', 'blended'];
+  var cells = row.querySelectorAll('td[data-sel]');
+  cells.forEach(function(td) {
+    var f = td.getAttribute('data-sel');
+    var s = computeStats(selLocs, f, role);
+    td.innerHTML = s ? '<strong>$' + s.mean.toFixed(2) + '</strong>' : '&mdash;';
   });
-  stats.innerHTML = html;
-  bar.classList.add('visible');
+  var lbl = row.querySelector('.sel-count');
+  if (lbl) lbl.textContent = selLocs.length + ' selected';
+  row.classList.add('visible');
 }
 
 function sortTable(col) {
