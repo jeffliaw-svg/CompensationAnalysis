@@ -1127,7 +1127,13 @@ function renderTable() {
     html += '<tr' + (isFirst ? ' class="q-first"' : '') + '>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
     var fullAddr = loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip;
-    var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(fullAddr);
+    var nearby = loc.city + ', ' + loc.state;
+    var stops = [fullAddr];
+    if (isInRange(loc, 'walmart')) stops.push('Walmart near ' + nearby);
+    if (isInRange(loc, 'home_depot')) stops.push('Home Depot near ' + nearby);
+    if (isInRange(loc, 'costco')) stops.push('Costco near ' + nearby);
+    if (isInRange(loc, 'starbucks')) stops.push('Starbucks near ' + nearby);
+    var mapsUrl = 'https://www.google.com/maps/dir/' + stops.map(function(s){ return encodeURIComponent(s); }).join('/');
     html += '<td><a href="' + mapsUrl + '" target="_blank" class="yard-link"><strong>' + loc.yard + '</strong></a><div class="yard-addr">' + fullAddr + '</div></td>';
     html += '<td>' + loc.city + ', ' + loc.state + '</td>';
     html += empCell('Walmart', 'walmart', loc, role);
