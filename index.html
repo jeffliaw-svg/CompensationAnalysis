@@ -137,7 +137,7 @@ header .meta { font-size: 13px; opacity: 0.65; margin-top: 8px; }
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   overflow-x: auto;
 }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 thead { background: var(--navy); color: var(--white); position: sticky; top: 0; z-index: 2; }
 th {
   padding: 10px 10px;
@@ -150,8 +150,15 @@ th {
 th:hover { background: var(--navy-light); }
 th .sort-arrow { font-size: 10px; margin-left: 3px; opacity: 0.6; }
 th.sorted .sort-arrow { opacity: 1; }
+th.col-wage, td.col-wage { text-align: right; }
 td { padding: 7px 10px; border-bottom: 1px solid var(--gray-200); }
 tr:hover td { background: var(--gray-100); }
+col.col-chk { width: 36px; }
+col.col-q { width: 44px; }
+col.col-yard { width: 22%; }
+col.col-city { width: 13%; }
+col.col-emp { width: 11%; }
+col.col-blend { width: 10%; }
 
 .yard-link { color: var(--navy); text-decoration: none; }
 .yard-link:hover { color: var(--blue-600); text-decoration: underline; }
@@ -173,14 +180,15 @@ td.na-cell { color: var(--gray-500); font-style: italic; cursor: help; }
   transform: translateX(-50%);
   background: var(--navy);
   color: var(--white);
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
   font-size: 11px;
   white-space: normal;
-  width: 180px;
+  width: 220px;
   text-align: center;
   z-index: 10;
   pointer-events: none;
+  line-height: 1.5;
 }
 .wage-cell .dist-tip::after {
   content: '';
@@ -221,6 +229,30 @@ tr.q-spacer td {
   height: 16px;
   padding: 0;
 }
+
+th.col-chk { width: 36px; text-align: center; cursor: default; }
+th.col-chk:hover { background: var(--navy); }
+td.col-chk { text-align: center; }
+td.col-chk input[type="checkbox"] { cursor: pointer; }
+
+.selected-bar {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 12px;
+  display: none;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.selected-bar.visible { display: flex; }
+.selected-bar .sel-label { font-weight: 700; min-width: 90px; }
+.selected-bar .sel-stat { display: flex; gap: 16px; flex-wrap: wrap; }
+.selected-bar .sel-item { font-size: 13px; }
+.selected-bar .sel-item .sel-emp { opacity: 0.7; margin-right: 4px; }
+.selected-bar .sel-item .sel-val { font-weight: 700; }
 
 .methodology {
   background: var(--white);
@@ -426,19 +458,35 @@ footer a { color: var(--blue-600); }
         <span class="legend-item"><span class="q-badge q4">Q4</span> Lowest</span>
         <span style="margin-left:8px;color:var(--gray-500)">Hover wage for nearest store distance &middot; Hover yard name for address</span>
       </div>
+      <div class="selected-bar" id="selectedBar">
+        <span class="sel-label" id="selLabel">0 selected</span>
+        <div class="sel-stat" id="selStats"></div>
+      </div>
       <div class="row-count" id="rowCount"></div>
       <div class="table-wrap">
         <table id="locTable">
+          <colgroup>
+            <col class="col-chk">
+            <col class="col-q">
+            <col class="col-yard">
+            <col class="col-city">
+            <col class="col-emp">
+            <col class="col-emp">
+            <col class="col-emp">
+            <col class="col-emp">
+            <col class="col-blend">
+          </colgroup>
           <thead>
             <tr>
+              <th class="col-chk"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" title="Select all visible"></th>
               <th data-col="quartile" onclick="sortTable('quartile')">Q <span class="sort-arrow">&#9650;</span></th>
               <th data-col="yard" onclick="sortTable('yard')">Yard Name <span class="sort-arrow">&#9650;</span></th>
               <th data-col="city" onclick="sortTable('city')">City, State <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="walmart" onclick="sortTable('walmart')">Walmart <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="homedepot" onclick="sortTable('homedepot')">Home Depot <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="costco" onclick="sortTable('costco')">Costco <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="starbucks" onclick="sortTable('starbucks')">Starbucks <span class="sort-arrow">&#9650;</span></th>
-              <th data-col="blended" onclick="sortTable('blended')">Blended <span class="sort-arrow">&#9650;</span></th>
+              <th class="col-wage" data-col="walmart" onclick="sortTable('walmart')">Walmart <span class="sort-arrow">&#9650;</span></th>
+              <th class="col-wage" data-col="homedepot" onclick="sortTable('homedepot')">Home Depot <span class="sort-arrow">&#9650;</span></th>
+              <th class="col-wage" data-col="costco" onclick="sortTable('costco')">Costco <span class="sort-arrow">&#9650;</span></th>
+              <th class="col-wage" data-col="starbucks" onclick="sortTable('starbucks')">Starbucks <span class="sort-arrow">&#9650;</span></th>
+              <th class="col-wage" data-col="blended" onclick="sortTable('blended')">Blended <span class="sort-arrow">&#9650;</span></th>
             </tr>
           </thead>
           <tbody id="locBody"></tbody>
@@ -975,6 +1023,7 @@ var DATA = {"metadata": {"generated": "2026-06-07", "employer_data_period": "Q1 
 var ROLE = { current: 'outdoor' };
 var sortState = { col: 'blended', asc: false };
 var CUTOFF = DATA.metadata.distance_cutoff_mi || 25;
+var selectedZips = {};
 
 function assignQuartiles() {
   var key = 'blended_wage_' + ROLE.current;
@@ -1041,7 +1090,7 @@ function blendedCell(loc, role) {
       return Math.round(p.weight / totalW * 100) + '% ' + p.name;
     }).join(' + ');
   }
-  return '<td class="wage-cell"><strong>$' + val.toFixed(2) + '</strong>' +
+  return '<td class="wage-cell col-wage"><strong>$' + val.toFixed(2) + '</strong>' +
     (tip ? '<span class="dist-tip">' + tip + '</span>' : '') + '</td>';
 }
 
@@ -1050,9 +1099,9 @@ function empCell(emp, empKey, loc, role) {
   var dist = loc.nearest_distance_mi || {};
   var shortKey = empKey === 'home_depot' ? 'home_depot' : emp.toLowerCase();
   if (e && isInRange(loc, shortKey)) {
-    return '<td class="wage-cell">' + fmtWageWithDist(e.hourly_avg, e.source_url, e.source_name, dist[shortKey] || 0) + '</td>';
+    return '<td class="wage-cell col-wage">' + fmtWageWithDist(e.hourly_avg, e.source_url, e.source_name, dist[shortKey] || 0) + '</td>';
   }
-  return '<td class="na-cell" title="Nearest ' + emp + ': ' + (dist[shortKey] || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
+  return '<td class="na-cell col-wage" title="Nearest ' + emp + ': ' + (dist[shortKey] || 0).toFixed(1) + ' mi (>' + CUTOFF + ' mi cutoff)">N/A</td>';
 }
 
 function computeStats(locs, field, role) {
@@ -1109,7 +1158,7 @@ function renderTable() {
 
   var html = '';
   var qGroups = {};
-  var cols = 8;
+  var cols = 9;
 
   locs.forEach(function(loc, idx) {
     if (!qGroups[loc.quartile]) qGroups[loc.quartile] = [];
@@ -1117,8 +1166,10 @@ function renderTable() {
 
     var prevLoc = idx > 0 ? locs[idx - 1] : null;
     var isFirst = !prevLoc || prevLoc.quartile !== loc.quartile;
+    var chk = selectedZips[loc.zip] ? ' checked' : '';
 
     html += '<tr' + (isFirst ? ' class="q-first"' : '') + '>';
+    html += '<td class="col-chk"><input type="checkbox" data-zip="' + loc.zip + '" onchange="toggleSelect(this)"' + chk + '></td>';
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
     var fullAddr = loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip;
     var nearby = loc.city + ', ' + loc.state;
@@ -1141,27 +1192,26 @@ function renderTable() {
     var nextLoc = locs[idx + 1];
     if (!nextLoc || nextLoc.quartile !== loc.quartile) {
       var group = qGroups[loc.quartile];
-      // Mean row
       html += '<tr class="subtotal-row mean-row">';
+      html += '<td class="col-chk"></td>';
       html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
       html += '<td colspan="2"><strong>Mean</strong> (' + group.length + ' locations)</td>';
-      html += '<td>' + statCell(group, 'walmart', role) + '</td>';
-      html += '<td>' + statCell(group, 'homedepot', role) + '</td>';
-      html += '<td>' + statCell(group, 'costco', role) + '</td>';
-      html += '<td>' + statCell(group, 'starbucks', role) + '</td>';
-      html += '<td><strong>' + statCell(group, 'blended', role) + '</strong></td>';
+      html += '<td class="col-wage">' + statCell(group, 'walmart', role) + '</td>';
+      html += '<td class="col-wage">' + statCell(group, 'homedepot', role) + '</td>';
+      html += '<td class="col-wage">' + statCell(group, 'costco', role) + '</td>';
+      html += '<td class="col-wage">' + statCell(group, 'starbucks', role) + '</td>';
+      html += '<td class="col-wage"><strong>' + statCell(group, 'blended', role) + '</strong></td>';
       html += '</tr>';
-      // Median row
       html += '<tr class="subtotal-row median-row">';
+      html += '<td class="col-chk"></td>';
       html += '<td></td>';
       html += '<td colspan="2"><strong>Median</strong></td>';
-      html += '<td>' + statCellMed(group, 'walmart', role) + '</td>';
-      html += '<td>' + statCellMed(group, 'homedepot', role) + '</td>';
-      html += '<td>' + statCellMed(group, 'costco', role) + '</td>';
-      html += '<td>' + statCellMed(group, 'starbucks', role) + '</td>';
-      html += '<td><strong>' + statCellMed(group, 'blended', role) + '</strong></td>';
+      html += '<td class="col-wage">' + statCellMed(group, 'walmart', role) + '</td>';
+      html += '<td class="col-wage">' + statCellMed(group, 'homedepot', role) + '</td>';
+      html += '<td class="col-wage">' + statCellMed(group, 'costco', role) + '</td>';
+      html += '<td class="col-wage">' + statCellMed(group, 'starbucks', role) + '</td>';
+      html += '<td class="col-wage"><strong>' + statCellMed(group, 'blended', role) + '</strong></td>';
       html += '</tr>';
-      // Spacer between quartiles
       if (nextLoc) {
         html += '<tr class="q-spacer"><td colspan="' + cols + '"></td></tr>';
       }
@@ -1169,6 +1219,63 @@ function renderTable() {
   });
   tbody.innerHTML = html;
   document.getElementById('rowCount').textContent = locs.length + ' of ' + DATA.locations.length + ' locations';
+  updateSelectAllState();
+}
+
+function toggleSelect(cb) {
+  var zip = cb.getAttribute('data-zip');
+  if (cb.checked) { selectedZips[zip] = true; } else { delete selectedZips[zip]; }
+  updateSelection();
+  updateSelectAllState();
+}
+
+function toggleSelectAll(cb) {
+  var boxes = document.querySelectorAll('#locBody input[type="checkbox"]');
+  boxes.forEach(function(b) {
+    b.checked = cb.checked;
+    var zip = b.getAttribute('data-zip');
+    if (cb.checked) { selectedZips[zip] = true; } else { delete selectedZips[zip]; }
+  });
+  updateSelection();
+}
+
+function updateSelectAllState() {
+  var boxes = document.querySelectorAll('#locBody input[type="checkbox"]');
+  var all = document.getElementById('selectAll');
+  if (!boxes.length) { all.checked = false; return; }
+  var total = boxes.length, checked = 0;
+  boxes.forEach(function(b) { if (b.checked) checked++; });
+  all.checked = checked === total;
+  all.indeterminate = checked > 0 && checked < total;
+}
+
+function updateSelection() {
+  var role = ROLE.current;
+  var bar = document.getElementById('selectedBar');
+  var label = document.getElementById('selLabel');
+  var stats = document.getElementById('selStats');
+  var zips = Object.keys(selectedZips);
+  if (zips.length === 0) {
+    bar.classList.remove('visible');
+    return;
+  }
+  var selLocs = DATA.locations.filter(function(l) { return selectedZips[l.zip]; });
+  label.textContent = selLocs.length + ' selected';
+  var fields = [
+    {key: 'walmart', label: 'WMT'},
+    {key: 'homedepot', label: 'HD'},
+    {key: 'costco', label: 'COST'},
+    {key: 'starbucks', label: 'SBUX'},
+    {key: 'blended', label: 'Blended'}
+  ];
+  var html = '';
+  fields.forEach(function(f) {
+    var s = computeStats(selLocs, f.key, role);
+    var val = s ? '$' + s.mean.toFixed(2) : '—';
+    html += '<span class="sel-item"><span class="sel-emp">' + f.label + ':</span><span class="sel-val">' + val + '</span></span>';
+  });
+  stats.innerHTML = html;
+  bar.classList.add('visible');
 }
 
 function sortTable(col) {
@@ -1199,6 +1306,7 @@ function switchRole() {
   document.getElementById('lbl-indoor').classList.toggle('active', isIndoor);
   assignQuartiles();
   renderTable();
+  updateSelection();
 }
 
 function switchTab(tab) {
