@@ -350,21 +350,15 @@ footer a { color: var(--blue-600); }
     </div>
     <div class="card">
       <div class="label">Costco</div>
-      {%- set co_out = [] %}{%- set co_in = [] %}{%- for s in data.state_summary %}{%- if s.costco_outdoor %}{{ co_out.append(s.costco_outdoor) or '' }}{%- endif %}{%- if s.costco_indoor %}{{ co_in.append(s.costco_indoor) or '' }}{%- endif %}{%- endfor %}
-      <div class="card-wages">
-        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(co_out|sum / co_out|length) }}/hr</a></div>
-        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.costco.indoor_indeed }}" target="_blank">${{ "%.2f"|format(co_in|sum / co_in|length) }}/hr</a></div>
-      </div>
-      <div class="detail">National avg</div>
+      {%- set co_out = [] %}{%- for s in data.state_summary %}{%- if s.costco_outdoor %}{{ co_out.append(s.costco_outdoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="value"><a href="{{ data.employer_sources.costco.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(co_out|sum / co_out|length) }}</a>/hr</div>
+      <div class="detail">National avg (no indoor/outdoor distinction)</div>
     </div>
     <div class="card">
       <div class="label">Starbucks</div>
-      {%- set sb_out = [] %}{%- set sb_in = [] %}{%- for s in data.state_summary %}{%- if s.starbucks_outdoor %}{{ sb_out.append(s.starbucks_outdoor) or '' }}{%- endif %}{%- if s.starbucks_indoor %}{{ sb_in.append(s.starbucks_indoor) or '' }}{%- endif %}{%- endfor %}
-      <div class="card-wages">
-        <div class="card-wage-row"><span class="card-role">Outdoor</span> <a class="card-amt" href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(sb_out|sum / sb_out|length) }}/hr</a></div>
-        <div class="card-wage-row"><span class="card-role">Indoor</span> <a class="card-amt" href="{{ data.employer_sources.starbucks.indoor_indeed }}" target="_blank">${{ "%.2f"|format(sb_in|sum / sb_in|length) }}/hr</a></div>
-      </div>
-      <div class="detail">National avg</div>
+      {%- set sb_out = [] %}{%- for s in data.state_summary %}{%- if s.starbucks_outdoor %}{{ sb_out.append(s.starbucks_outdoor) or '' }}{%- endif %}{%- endfor %}
+      <div class="value"><a href="{{ data.employer_sources.starbucks.outdoor_indeed }}" target="_blank">${{ "%.2f"|format(sb_out|sum / sb_out|length) }}</a>/hr</div>
+      <div class="detail">National avg (no indoor/outdoor distinction)</div>
     </div>
   </div>
 
@@ -658,11 +652,12 @@ function renderTable() {
     html += '<td><span class="q-badge q' + loc.quartile + '">Q' + loc.quartile + '</span></td>';
     var fullAddr = loc.address + ', ' + loc.city + ', ' + loc.state + ' ' + loc.zip;
     var nearby = loc.city + ', ' + loc.state;
+    var ca = loc.competitor_addresses || {};
     var stops = [fullAddr];
-    if (isInRange(loc, 'walmart')) stops.push('Walmart near ' + nearby);
-    if (isInRange(loc, 'home_depot')) stops.push('Home Depot near ' + nearby);
-    if (isInRange(loc, 'costco')) stops.push('Costco near ' + nearby);
-    if (isInRange(loc, 'starbucks')) stops.push('Starbucks near ' + nearby);
+    if (isInRange(loc, 'walmart')) stops.push(ca.walmart || ('Walmart near ' + nearby));
+    if (isInRange(loc, 'home_depot')) stops.push(ca.home_depot || ('Home Depot near ' + nearby));
+    if (isInRange(loc, 'costco')) stops.push(ca.costco || ('Costco near ' + nearby));
+    if (isInRange(loc, 'starbucks')) stops.push(ca.starbucks || ('Starbucks near ' + nearby));
     var mapsUrl = 'https://www.google.com/maps/dir/' + stops.map(function(s){ return encodeURIComponent(s); }).join('/');
     html += '<td><a href="' + mapsUrl + '" target="_blank" class="yard-link"><strong>' + loc.yard + '</strong></a><div class="yard-addr">' + fullAddr + '</div></td>';
     html += '<td>' + loc.city + ', ' + loc.state + '</td>';

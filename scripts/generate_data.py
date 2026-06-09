@@ -595,6 +595,13 @@ def build_data_json(emp_rows):
     emp_keys_outdoor = ["walmart_outdoor", "home_depot_outdoor", "costco_outdoor", "starbucks_outdoor"]
     emp_keys_indoor = ["walmart_indoor", "home_depot_indoor", "costco_indoor", "starbucks_indoor"]
 
+    # Load real store locations if available
+    store_cache_path = BASE_DIR / "data" / "store_locations.json"
+    store_cache = {}
+    if store_cache_path.exists():
+        store_cache = json.loads(store_cache_path.read_text())
+        print(f"  Using real store locations ({len(store_cache)} zips cached)")
+
     locations = []
     for name, city, st, addr, zipcode in COPART_LOCATIONS:
         loc = {
@@ -608,13 +615,23 @@ def build_data_json(emp_rows):
 
         distances = {}
         in_range = {}
+        competitor_addresses = {}
+        cached = store_cache.get(zipcode, {})
         for employer in employers_list:
-            d = estimate_distance(zipcode, employer)
             key = employer.lower().replace(" ", "_")
-            distances[key] = d
-            in_range[key] = d <= DISTANCE_CUTOFF_MI
+            store = cached.get(key)
+            if store and store.get("distance_mi") is not None:
+                distances[key] = store["distance_mi"]
+                in_range[key] = store["distance_mi"] <= DISTANCE_CUTOFF_MI
+                competitor_addresses[key] = store.get("address")
+            else:
+                d = estimate_distance(zipcode, employer)
+                distances[key] = d
+                in_range[key] = d <= DISTANCE_CUTOFF_MI
+                competitor_addresses[key] = None
         loc["nearest_distance_mi"] = distances
         loc["in_range"] = in_range
+        loc["competitor_addresses"] = competitor_addresses
 
         # Inverse-distance weighted blended wage for both role types
         for role_suffix in ("outdoor", "indoor"):
